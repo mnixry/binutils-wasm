@@ -12,21 +12,23 @@ jobs:
 
     strategy:
       matrix:
-        processor: #  ARM ARM (thumb) AArch64 Mips (32) Mips (64) PowerPC (32) PowerPC (64) Sparc x86 (16) x86 (32) x86 (64)
-          - arm
-          - arm64
-          - mips
-          - mips64
-          - powerpc
-          - powerpc64
-          - sparc
-          - i386
-          - x86_64
-          - riscv
-          - riscv64
-          - loongarch
-          - loongarch64
-          - wasm32
+        target:
+          - armv7-linux-gnueabihf
+          - aarch64-linux-gnu
+          - mips-linux-gnu
+          - mips64-linux-gnuabi64
+          - powerpc-linux-gnu
+          - powerpc64-linux-gnu
+          - sparc-linux-gnu
+          - i386-linux-gnu
+          - x86_64-linux-gnu
+          - riscv32-linux-gnu
+          - riscv64-linux-gnu
+          - loongarch-linux-gnu
+          - loongarch64-linux-gnu
+          - wasm32-unknown-unknown
+      fail-fast: false
+
 
     steps:
       - uses: actions/checkout@v3
@@ -40,9 +42,9 @@ jobs:
         id: build
         working-directory: binutils-gdb
         run: |
-          ../build.sh ${{ matrix.processor }}-unknown-linux-gnu
+          ../build.sh ${{ matrix.target }}
 
       - uses: actions/upload-artifact@v4
         with:
-          name: build-${{ matrix.processor }}
+          name: ${{ matrix.target }}
           path: ${{ steps.build.outputs.build.dir }}
