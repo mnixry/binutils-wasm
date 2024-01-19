@@ -31,8 +31,14 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - uses: actions/checkout@v4
+        with:
+          repository: bminor/binutils-gdb
+          path: ../binutils-gdb
+
       - name: Build
         id: build
+        working-directory: ../binutils-gdb
         run: |
           chmod +x ./build.sh
           ./build.sh ${{ matrix.processor }}-unknown-linux-gnu
