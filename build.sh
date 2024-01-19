@@ -8,7 +8,7 @@ if [ -z "$target" ]; then
 fi
 
 src_dir="binutils"
-build_dir_base=$(realpath -f"build")
+build_dir_base=$(realpath -m "build")
 
 target_paths=(
     "binutils/addr2line"
@@ -42,7 +42,7 @@ common_configure_flags=(
 
 function build_binutils() {
     build_type=$1
-    build_dir=$(realpath -f "$build_dir_base/$build_type")
+    build_dir=$(realpath -m "$build_dir_base/$build_type")
 
     git clean -fdx
     git reset --hard HEAD
