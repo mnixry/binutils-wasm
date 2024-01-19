@@ -24,9 +24,8 @@ jobs:
           - x86_64-linux-gnu
           - riscv32-linux-gnu
           - riscv64-linux-gnu
-          - loongarch-linux-gnu
+          - loongarch32-linux-gnu
           - loongarch64-linux-gnu
-          - wasm32-unknown-unknown
       fail-fast: false
 
 
@@ -37,6 +36,11 @@ jobs:
         with:
           repository: bminor/binutils-gdb
           path: binutils-gdb
+      
+      - name: Install dependencies
+        run: |
+          apt-get update
+          apt-get install -y texinfo flex bison
 
       - name: Build
         id: build
