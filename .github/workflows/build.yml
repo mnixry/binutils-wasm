@@ -40,8 +40,7 @@ jobs:
         id: build
         working-directory: binutils-gdb
         run: |
-          chmod +x ./build.sh
-          ./build.sh ${{ matrix.processor }}-unknown-linux-gnu
+          ../build.sh ${{ matrix.processor }}-unknown-linux-gnu
 
       - uses: actions/upload-artifact@v4
         with:
