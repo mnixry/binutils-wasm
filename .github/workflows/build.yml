@@ -1,0 +1,43 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container: emscripten/emsdk:latest
+
+    strategy:
+      matrix:
+        processor: #  ARM ARM (thumb) AArch64 Mips (32) Mips (64) PowerPC (32) PowerPC (64) Sparc x86 (16) x86 (32) x86 (64)
+          - arm
+          - arm64
+          - mips
+          - mips64
+          - powerpc
+          - powerpc64
+          - sparc
+          - i386
+          - x86_64
+          - riscv
+          - riscv64
+          - loongarch
+          - loongarch64
+          - wasm32
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Build
+        id: build
+        run: |
+          chmod +x ./build.sh
+          ./build.sh ${{ matrix.processor }}-unknown-linux-gnu
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: build-${{ matrix.processor }}
+          path: ${{ steps.build.outputs.build.dir }}
