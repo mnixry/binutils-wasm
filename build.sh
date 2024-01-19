@@ -36,6 +36,7 @@ common_configure_flags=(
     "--disable-libdecnumber"
     "--disable-readline"
     "--disable-sim"
+    "--disable-werror"
     "--host=wasm32"
     "--target=${target}"
 )
