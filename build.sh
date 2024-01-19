@@ -45,8 +45,7 @@ function build_binutils() {
     build_type=$1
     build_dir=$(realpath -m "$build_dir_base/$build_type")
 
-    git clean -fdx
-    git reset --hard HEAD
+    (make distclean || true)
     find . -name 'config.cache' -delete
 
     emconfigure ./configure "${common_configure_flags[@]}"
@@ -57,7 +56,7 @@ function build_binutils() {
     fi
 
     emmake make -j$(nproc) \
-      "CFLAGS=-DHAVE_PSIGNAL=1 -DELIDE_CODE -Oz" \
+      "CFLAGS=-DHAVE_PSIGNAL=1 -DELIDE_CODE" \
       "LDFLAGS=$ldflags"
 
     mkdir -p "${build_dir}"
