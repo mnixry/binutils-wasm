@@ -20,9 +20,6 @@ importers:
       '@types/node':
         specifier: ^20.11.5
         version: 20.11.5
-      tsx:
-        specifier: ^4.7.0
-        version: 4.7.0
       typescript:
         specifier: ^5.3.3
         version: 5.3.3
@@ -39,7 +36,21 @@ importers:
 
   packages/binutils-emscripten: {}
 
-  packages/gas-emscripten: {}
+  packages/gas:
+    dependencies:
+      '@binutils-wasm/gas-emscripten':
+        specifier: workspace:^
+        version: link:../gas-emscripten
+    devDependencies:
+      tsup:
+        specifier: ^8.0.1
+        version: 8.0.1(typescript@5.3.3)
+
+  packages/gas-emscripten:
+    devDependencies:
+      tsx:
+        specifier: ^4.7.0
+        version: 4.7.0
 
 packages:
 
