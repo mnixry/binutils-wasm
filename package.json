@@ -1,0 +1,20 @@
+{
+  "name": "@binutils-wasm/workspace-root",
+  "private": true,
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "build": "pnpm -r run build"
+  },
+  "keywords": [],
+  "author": "",
+  "devDependencies": {
+    "@tsconfig/esm": "^1.0.4",
+    "@tsconfig/node-lts": "^18.12.3",
+    "@tsconfig/strictest": "^2.0.1",
+    "@types/node": "^20.11.5",
+    "tsx": "^4.7.0",
+    "typescript": "^5.3.3"
+  },
+  "packageManager": "pnpm@8.0.0+"
+}
