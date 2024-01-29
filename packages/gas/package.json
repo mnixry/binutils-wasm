@@ -15,7 +15,8 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsup"
+    "build": "tsup",
+    "prebuild": "rm -rf ./dist"
   },
   "keywords": [],
   "author": "Mix <32300164+mnixry@users.noreply.github.com>",

@@ -1,7 +1,7 @@
 {
   "name": "@binutils-wasm/workspace-root",
   "private": true,
-  "version": "1.0.0",
+  "version": "0.0.0",
   "description": "",
   "scripts": {
     "build": "pnpm recursive --workspace-concurrency=1 run build"
