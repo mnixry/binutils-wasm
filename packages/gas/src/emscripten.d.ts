@@ -17,9 +17,9 @@ export namespace Emscripten {
     printErr(str: string): void;
     arguments: string[];
     environment: EnvironmentType;
-    preInit: Array<{ (): void }>;
-    preRun: Array<{ (): void }>;
-    postRun: Array<{ (): void }>;
+    preInit: Array<{ (m: Module): void }>;
+    preRun: Array<{ (m: Module): void }>;
+    postRun: Array<{ (m: Module): void }>;
     onAbort: { (what: any): void };
     onRuntimeInitialized: { (): void };
     preinitializedWebGLContext: WebGLRenderingContext;
