@@ -12,7 +12,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "docker buildx build --build-arg BRANCH=binutils-2_41-branch --output . ./build"
+    "build": "docker buildx build --progress=plain --build-arg BRANCH=binutils-2_41-branch --output . ./build"
   },
   "keywords": [],
   "author": "Mix <32300164+mnixry@users.noreply.github.com>",

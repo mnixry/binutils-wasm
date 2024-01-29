@@ -42,6 +42,7 @@ common_configure_flags=(
     "--disable-gprof"
     "--disable-nls"
     "--disable-gas"
+    "--disable-ld"
     "--disable-gdb"
     "--disable-gdbserver"
     "--disable-libdecnumber"
