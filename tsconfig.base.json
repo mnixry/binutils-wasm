@@ -1,10 +1,10 @@
 {
-    "extends": [
-        "@tsconfig/node-lts/tsconfig.json",
-        "@tsconfig/strictest/tsconfig.json",
-        "@tsconfig/esm/tsconfig.json"
-    ],
-    "compilerOptions": {
-        "resolveJsonModule": true
-    }
+  "extends": [
+    "@tsconfig/node-lts/tsconfig.json",
+    "@tsconfig/strictest/tsconfig.json",
+    "@tsconfig/esm/tsconfig.json"
+  ],
+  "compilerOptions": {
+    "resolveJsonModule": true
+  }
 }

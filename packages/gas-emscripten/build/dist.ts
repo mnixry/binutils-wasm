@@ -18,21 +18,18 @@ const supportedTargets = [
   "loongarch64-linux-gnu",
 ] as const;
 
-export type SupportedTarget = typeof supportedTargets[number];
+export type SupportedTarget = (typeof supportedTargets)[number];
 
 if (typeof require !== "undefined" && require.main === module) {
-  const ret = spawn(
-    "docker",
-    [
-      "buildx",
-      "build",
-      "--progress=plain",
-      "--build-arg=BRANCH=binutils-2_41-branch",
-      `--build-arg=TARGET=${supportedTargets.join(",")}`,
-      `--output=${process.cwd()}`,
-      `${process.cwd()}/build`,
-    ]
-  );
+  const ret = spawn("docker", [
+    "buildx",
+    "build",
+    "--progress=plain",
+    "--build-arg=BRANCH=binutils-2_41-branch",
+    `--build-arg=TARGET=${supportedTargets.join(",")}`,
+    `--output=${process.cwd()}`,
+    `${process.cwd()}/build`,
+  ]);
   ret.stdout.pipe(process.stdout);
   ret.stderr.pipe(process.stderr);
   ret.on("exit", (code) => {
