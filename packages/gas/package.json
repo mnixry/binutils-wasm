@@ -1,0 +1,29 @@
+{
+  "name": "@binutils-wasm/gas",
+  "version": "0.1.0",
+  "description": "GNU/Assembler compiled to WebAssembly",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mnixry/binutils-wasm.git",
+    "directory": "packages/gas"
+  },
+  "homepage": "https://github.com/mnixry/binutils-wasm#readme",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup"
+  },
+  "keywords": [],
+  "author": "Mix <32300164+mnixry@users.noreply.github.com>",
+  "license": "GPL-2.0-only",
+  "devDependencies": {
+    "tsup": "^8.0.1"
+  },
+  "dependencies": {
+    "@binutils-wasm/gas-emscripten": "workspace:^"
+  }
+}
