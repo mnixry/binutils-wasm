@@ -8,46 +8,25 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    container: emscripten/emsdk:latest
-
-    strategy:
-      matrix:
-        target:
-          - armv7-linux-gnueabihf
-          - aarch64-linux-gnu
-          - mips-linux-gnu
-          - mips64-linux-gnuabi64
-          - powerpc-linux-gnu
-          - powerpc64-linux-gnu
-          - sparc-linux-gnu
-          - i386-linux-gnu
-          - x86_64-linux-gnu
-          - riscv32-linux-gnu
-          - riscv64-linux-gnu
-          - loongarch32-linux-gnu
-          - loongarch64-linux-gnu
-      fail-fast: false
 
     steps:
       - uses: actions/checkout@v4
 
-      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
-          repository: bminor/binutils-gdb
-          path: binutils-gdb
-      
+          node-version: lts
+          cache: pnpm
+
       - name: Install dependencies
-        run: |
-          apt-get update
-          apt-get install -y texinfo flex bison
+        run: pnpm install
 
       - name: Build
-        id: build
-        working-directory: binutils-gdb
-        run: |
-          ../build.sh ${{ matrix.target }}
+        run: pnpm build
+      
+      - name: Dry run publish
+        run: pnpm -r publish --dry-run
 
       - uses: actions/upload-artifact@v4
         with:
-          name: ${{ matrix.target }}
-          path: ${{ steps.build.outputs.dir }}
+          name: build
+          path: .
