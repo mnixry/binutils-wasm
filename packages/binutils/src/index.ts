@@ -29,11 +29,11 @@ export default async function loader(
     throw new Error("Unknown package type");
   }
 
-  const importString =
-    `@binutils-wasm/binutils-emscripten/dist/${packageType}/${executable}` as const;
+  const importString = `./${packageType}/${executable}.js` as const;
   switch (packageType) {
     case "esm":
-      return (await import(importString)).default as Emscripten.ModuleFactory;
+      return (await import(/* @vite-ignore */ importString))
+        .default as Emscripten.ModuleFactory;
     case "cjs":
       return require(importString) as Emscripten.ModuleFactory;
     default:

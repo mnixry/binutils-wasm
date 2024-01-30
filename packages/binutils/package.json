@@ -15,16 +15,15 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsup",
+    "build:wrapper": "tsup",
+    "build:wasm": "docker buildx build --progress=plain --build-arg BRANCH=binutils-2_41-branch --output . ./build",
+    "build": "pnpm run build:wrapper && pnpm run build:wasm",
     "prebuild": "rm -rf ./dist"
   },
   "keywords": [],
   "author": "Mix <32300164+mnixry@users.noreply.github.com>",
-  "license": "GPL-2.0-only",
+  "license": "GPL-3.0-or-later",
   "devDependencies": {
     "tsup": "^8.0.1"
-  },
-  "dependencies": {
-    "@binutils-wasm/binutils-emscripten": "workspace:^"
   }
 }
