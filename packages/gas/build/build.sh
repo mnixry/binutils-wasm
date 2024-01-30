@@ -1,5 +1,5 @@
 #!/bin/bash
-#set -xe -o pipefail
+set -xe -o pipefail
 
 targets=$1
 build_type=$2
@@ -86,7 +86,7 @@ function build_binutils() {
     for path in "${target_paths[@]}"; do
         exe_name=$(basename $path)
         install_path="$output_dir/$build_type"
-        sed -i "s/\"$exe_name.wasm\"/\"$build_target.wasm\"/" "$path"
+        sed -i "s/\"$exe_name.wasm\"/\"$build_target.wasm\"/g" "$path"
         install -D "$path" "$install_path/$build_target.js"
         install -D "$path.wasm" "$install_path/$build_target.wasm"
     done
@@ -94,7 +94,7 @@ function build_binutils() {
 
 for target in $(echo "$targets" | tr "," "$IFS"); do
     for type in $(echo "$build_type" | tr "," "$IFS"); do
-        work_dir=$(mktemp -d -t "binutils.$target.$type.XXXXXX")
+        work_dir=$(mktemp -d -t "gas.$target.$type.XXXXXX")
         (cd "$work_dir" && build_binutils "$type" "$target")
     done
 done
