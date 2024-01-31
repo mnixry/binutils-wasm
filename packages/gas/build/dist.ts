@@ -27,7 +27,7 @@ if (typeof require !== "undefined" && require.main === module) {
     "--progress=plain",
     "--build-arg=BRANCH=binutils-2_41-branch",
     `--build-arg=TARGET=${supportedTargets.join(",")}`,
-    `--output=${process.cwd()}`,
+    `--output=${process.cwd()}/build`,
     `${process.cwd()}/build`,
   ]);
   ret.stdout.pipe(process.stdout);

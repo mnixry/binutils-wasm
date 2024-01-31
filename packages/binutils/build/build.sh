@@ -60,7 +60,7 @@ function build_binutils() {
 
     emconfigure "$source_dir/configure" "${common_configure_flags[@]}"
 
-    ldflags="-sMODULARIZE=1 -sFORCE_FILESYSTEM=1 -sEXPORTED_RUNTIME_METHODS=FS"
+    ldflags="-sMODULARIZE=1 -sFORCE_FILESYSTEM=1 -sEXPORTED_RUNTIME_METHODS=FS -sSINGLE_FILE=1"
     if [ "$build_type" = "esm" ]; then
         ldflags="$ldflags -sEXPORT_ES6=1"
     fi
@@ -70,14 +70,9 @@ function build_binutils() {
       "LDFLAGS=$ldflags"
 
     for path in "${target_paths[@]}"; do
-        exe_name=$(basename $path)
+        exe_name=$(basename $path | sed 's/-new$//')
         install_path="$output_dir/$build_type"
-        if [[ $exe_name =~ -new$ ]]; then
-            exe_name="${exe_name%-new}"
-            sed -i "s/\"$exe_name-new.wasm\"/\"$exe_name.wasm\"/" "$path"
-        fi
         install -D "$path" "$install_path/$exe_name.js"
-        install -D "$path.wasm" "$install_path/$exe_name.wasm"
     done
 }
 

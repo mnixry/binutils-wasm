@@ -31,7 +31,6 @@ fi
 
 if command -v parallel --version && [ -z "$IN_PARALLEL" ]; then
     script_file=$(realpath "$0")
-    export IN_PARALLEL=1
     exec env IN_PARALLEL=1 parallel \
         --use-cpus-instead-of-cores \
         --tagstring '[{1}.{2}]' \
@@ -42,10 +41,6 @@ if command -v parallel --version && [ -z "$IN_PARALLEL" ]; then
         ::: $(echo "$targets" | tr "," "$IFS") \
         ::: $(echo "$build_type" | tr "," "$IFS")
 fi
-
-target_paths=(
-    "gas/as-new"
-)
 
 common_configure_flags=(
     "--enable-default-execstack=no"
@@ -74,7 +69,7 @@ function build_binutils() {
 
     emconfigure "$source_dir/configure" --target="$build_target" "${common_configure_flags[@]}"
 
-    ldflags="-sMODULARIZE=1 -sFORCE_FILESYSTEM=1 -sEXPORTED_RUNTIME_METHODS=FS"
+    ldflags="-sMODULARIZE=1 -sFORCE_FILESYSTEM=1 -sEXPORTED_RUNTIME_METHODS=FS -sSINGLE_FILE=1"
     if [ "$build_type" = "esm" ]; then
         ldflags="$ldflags -sEXPORT_ES6=1"
     fi
@@ -83,13 +78,12 @@ function build_binutils() {
       "CFLAGS=-DHAVE_PSIGNAL=1 -DELIDE_CODE -Os" \
       "LDFLAGS=$ldflags"
 
-    for path in "${target_paths[@]}"; do
-        exe_name=$(basename $path)
-        install_path="$output_dir/$build_type"
-        sed -i "s/\"$exe_name.wasm\"/\"$build_target.wasm\"/g" "$path"
-        install -D "$path" "$install_path/$build_target.js"
-        install -D "$path.wasm" "$install_path/$build_target.wasm"
-    done
+    path="gas/as-new"
+    exe_name=$(basename $path)
+
+    install_path="$output_dir/$build_type"
+    sed -i "s/\"$exe_name.wasm\"/\"$build_target.wasm\"/g" "$path"
+    install -D "$path" "$install_path/$build_target.js"
 }
 
 for target in $(echo "$targets" | tr "," "$IFS"); do
