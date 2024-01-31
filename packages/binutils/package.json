@@ -16,9 +16,9 @@
   ],
   "scripts": {
     "build:wrapper": "tsup",
-    "build:wasm": "docker buildx build --progress=plain --build-arg BRANCH=binutils-2_41-branch --output . ./build",
-    "build": "pnpm run build:wrapper && pnpm run build:wasm",
-    "prebuild": "rm -rf ./dist"
+    "build:wasm": "docker buildx build --progress=plain --build-arg BRANCH=binutils-2_41-branch --output ./build ./build",
+    "build": "pnpm run build:wasm && pnpm run build:wrapper",
+    "prebuild": "rm -rf ./build/dist"
   },
   "keywords": [],
   "author": "Mix <32300164+mnixry@users.noreply.github.com>",

@@ -17,8 +17,8 @@
   "scripts": {
     "build:wrapper": "tsup",
     "build:wasm": "tsx build/dist.ts",
-    "build": "pnpm run build:wrapper && pnpm run build:wasm",
-    "prebuild": "rm -rf ./dist"
+    "build": "pnpm run build:wasm && pnpm run build:wrapper",
+    "prebuild": "rm -rf ./build/dist"
   },
   "keywords": [],
   "author": "Mix <32300164+mnixry@users.noreply.github.com>",
