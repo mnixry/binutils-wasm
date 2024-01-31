@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "description": "",
   "scripts": {
-    "build": "pnpm recursive --workspace-concurrency=1 run build",
+    "build": "pnpm recursive --workspace-concurrency=1 --filter !frontend run build",
     "frontend": "pnpm --filter frontend"
   },
   "keywords": [],
