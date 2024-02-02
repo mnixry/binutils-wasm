@@ -50,6 +50,7 @@ common_configure_flags=(
     "--disable-sim"
     "--disable-werror"
     "--host=wasm32"
+    "--enable-64-bit-bfd"
     "--enable-targets=all"
 )
 
