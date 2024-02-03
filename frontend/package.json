@@ -14,8 +14,14 @@
     "@binutils-wasm/gas": "workspace:^",
     "@mantine/core": "^7.5.0",
     "@mantine/hooks": "^7.5.0",
+    "@replit/codemirror-vscode-keymap": "^6.0.2",
+    "@tabler/icons-react": "^2.47.0",
+    "@uiw/codemirror-extensions-langs": "^4.21.21",
+    "@uiw/codemirror-theme-github": "^4.21.21",
+    "@uiw/react-codemirror": "^4.21.21",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "shlex": "^2.1.2"
   },
   "devDependencies": {
     "@types/react": "^18.2.43",
