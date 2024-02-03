@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 import CodeMirror, { keymap } from "@uiw/react-codemirror";
 import { langs } from "@uiw/codemirror-extensions-langs";
@@ -184,7 +184,8 @@ export default function AssemblerPane() {
     setInput(
       publicPrefix.join("\n") +
         "\n\t" +
-        (architectureInfo.asmPrefix?.join("\n\t") ?? "")
+        (architectureInfo.asmPrefix?.join("\n\t") ?? "") +
+        "\n\t"
     );
   }, [architecture, architectureInfo]);
 
@@ -219,6 +220,7 @@ export default function AssemblerPane() {
                 ((index + 1) % 16 === 0 ? "\n" : " ")
             )
             .join("")
+            .trim()
         : undefined,
     [data]
   );
@@ -226,7 +228,7 @@ export default function AssemblerPane() {
   const [elfData, setElfData] = useState<Uint8Array>();
   const colorScheme = useComputedColorScheme("dark");
 
-  const assemble = async (inputOverride?: string) => {
+  const assemble = useCallback(async () => {
     if (!asParams || !objcopyParams) return;
 
     const gas = await gasLoader(architectureInfo.target);
@@ -237,7 +239,7 @@ export default function AssemblerPane() {
     setElfData(undefined);
 
     const output = [] as ExecuteOutput[],
-      inputData = new TextEncoder().encode(inputOverride ?? input);
+      inputData = new TextEncoder().encode(input);
     let elf: Uint8Array | undefined = undefined;
     await gas({
       print: (str) =>
@@ -265,7 +267,12 @@ export default function AssemblerPane() {
       postRun: [(m) => setData(m.FS.readFile("/tmp/a.bin"))],
     });
     setOutput(output);
-  };
+  }, [asParams, objcopyParams, input, architectureInfo]);
+  useEffect(() => {
+    assemble().catch((e) =>
+      setOutput([{ program: "internal", line: e, fd: "stderr" }])
+    );
+  }, [assemble]);
 
   return (
     <>
@@ -430,7 +437,7 @@ export default function AssemblerPane() {
               `Targeting: ${architectureInfo.target} ${asParamString}`
             }
             editable={asParams !== undefined && objcopyParams !== undefined}
-            onChange={(input) => (assemble(input), setInput(input))}
+            onChange={setInput}
             extensions={[langs.gas(), keymap.of(vscodeKeymap)]}
             theme={colorScheme === "dark" ? githubDark : githubLight}
           />
