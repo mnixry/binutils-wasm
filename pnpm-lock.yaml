@@ -13,9 +13,6 @@ importers:
 
   .:
     devDependencies:
-      '@tsconfig/esm':
-        specifier: ^1.0.4
-        version: 1.0.5
       '@tsconfig/node-lts':
         specifier: ^18.12.3
         version: 18.12.5
@@ -1434,11 +1431,6 @@ packages:
   /@tabler/icons@2.47.0:
     resolution: {integrity: sha512-4w5evLh+7FUUiA1GucvGj2ReX2TvOjEr4ejXdwL/bsjoSkof6r1gQmzqI+VHrE2CpJpB3al7bCTulOkFa/RcyA==}
     dev: false
-
-  /@tsconfig/esm@1.0.5:
-    resolution: {integrity: sha512-JzoZ0h299JRLPfV5VBsMq1TuMy+OmU9bdV/7NcjfRojL0eIcA1k5ESrtjWrDwJRJnk9B0QmgR0rq04LERbdfWw==}
-    deprecated: this package has been deprecated
-    dev: true
 
   /@tsconfig/node-lts@18.12.5:
     resolution: {integrity: sha512-KJZX0kQ5FBv77WDVzmQ9y1dUjaJCNXAAz3LSsg5cMwH0AUijVdDQtII+IVprEXdb13U9GjVOBxBzyRvr/ozPxw==}

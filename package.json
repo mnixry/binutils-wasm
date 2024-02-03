@@ -10,7 +10,6 @@
   "keywords": [],
   "author": "",
   "devDependencies": {
-    "@tsconfig/esm": "^1.0.4",
     "@tsconfig/node-lts": "^18.12.3",
     "@tsconfig/strictest": "^2.0.1",
     "@types/node": "^20.11.5",
