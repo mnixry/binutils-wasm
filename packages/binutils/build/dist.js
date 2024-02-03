@@ -1,24 +1,4 @@
-import { spawn } from "node:child_process";
-
-const supportedTargets = [
-  "armv7-linux-gnueabihf",
-  "aarch64-linux-gnu",
-  "mips-linux-gnu",
-  "mips64-linux-gnuabi64",
-  "powerpc-linux-gnu",
-  "powerpc64-linux-gnu",
-  "sparc-linux-gnu",
-  "sparc64-linux-gnu",
-  "i386-linux-gnu",
-  "x86_64-linux-gnu",
-  "ia64-linux-gnu",
-  "riscv32-linux-gnu",
-  "riscv64-linux-gnu",
-  "loongarch32-linux-gnu",
-  "loongarch64-linux-gnu",
-] as const;
-
-export type SupportedTarget = (typeof supportedTargets)[number];
+const { spawn } = require("child_process");
 
 if (typeof require !== "undefined" && require.main === module) {
   const extraArgs = process.argv.slice(2);
@@ -34,7 +14,6 @@ if (typeof require !== "undefined" && require.main === module) {
     "build",
     "--progress=plain",
     "--build-arg=BRANCH=binutils-2_41-branch",
-    `--build-arg=TARGET=${supportedTargets.join(",")}`,
     `--output=${process.cwd()}/build`,
     ...extraArgs,
     `${process.cwd()}/build`,
