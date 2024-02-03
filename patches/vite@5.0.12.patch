@@ -1,0 +1,17 @@
+diff --git a/dist/node/chunks/dep-9A4-l-43.js b/dist/node/chunks/dep-9A4-l-43.js
+index 990f7c7945986bd26f0b9dac5794b28a235df1c7..3380081f11a88c1021c7f20d91a8f3ed7809fa16 100644
+--- a/dist/node/chunks/dep-9A4-l-43.js
++++ b/dist/node/chunks/dep-9A4-l-43.js
+@@ -38068,7 +38068,11 @@ function stripLiteralJsTokens(code, options) {
+ }
+ 
+ function stripLiteral(code, options) {
+-  return stripLiteralDetailed(code, options).result;
++  try {
++    return stripLiteralDetailed(code, options).result;
++  } catch {
++    return code;
++  }
+ }
+ function stripLiteralDetailed(code, options) {
+   return stripLiteralJsTokens(code, options);
