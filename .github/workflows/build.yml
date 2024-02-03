@@ -32,5 +32,5 @@ jobs:
 
       - uses: actions/upload-artifact@v4
         with:
-          name: build
-          path: .
+          name: dists
+          path: ./**/dist/**/*
