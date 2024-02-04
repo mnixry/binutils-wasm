@@ -1,10 +1,4 @@
-import {
-  Alert,
-  Badge,
-  Code,
-  type DefaultMantineColor,
-  Group,
-} from "@mantine/core";
+import { Alert, type AlertProps, Badge, Code, Group } from "@mantine/core";
 import { IconFileText } from "@tabler/icons-react";
 
 export interface ExecutionOutput {
@@ -17,13 +11,12 @@ export default function ExecutionOutputGroup({
   output,
   title = "Execution output",
   color = "yellow",
-}: {
+  ...props
+}: AlertProps & {
   output: ExecutionOutput[];
-  title?: string;
-  color?: DefaultMantineColor;
 }) {
   return (
-    <Alert color={color} title={title} icon={<IconFileText />}>
+    <Alert color={color} title={title} icon={<IconFileText />} {...props}>
       {output.map((line, index) => (
         <Group pt={2} key={index}>
           <Badge color={line.fd === "stderr" ? "yellow" : "blue"}>
