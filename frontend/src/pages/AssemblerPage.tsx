@@ -5,7 +5,6 @@ import binutilsLoader from "@binutils-wasm/binutils";
 import gasLoader from "@binutils-wasm/gas";
 import {
   Alert,
-  Button,
   Code,
   Flex,
   Grid,
@@ -19,7 +18,6 @@ import {
 import { useResizeObserver } from "@mantine/hooks";
 import {
   IconAssembly,
-  IconCopy,
   IconCopyMinus,
   IconCpu,
   IconCrane,
@@ -29,6 +27,7 @@ import {
 } from "@tabler/icons-react";
 
 import CodeMirrorEditor from "../components/CodeMirrorEditor";
+import CopyingButton from "../components/CopyingButton";
 import DownloadButton from "../components/DownloadButton";
 import ExecutionOutputGroup, {
   type ExecutionOutput,
@@ -357,17 +356,13 @@ export default function AssemblerPage() {
           </Grid.Col>
           <Grid.Col span="content">
             <Flex px="md" pt="md" align="flex-end" gap="md">
-              <Button
-                disabled={!hexData}
-                leftSection={
-                  <IconCopy style={{ width: rem(16), height: rem(16) }} />
-                }
-                onClick={() => navigator.clipboard.writeText(hexData!)}
-                variant="outline"
+              <CopyingButton
+                value={hexData}
+                label="Copy"
+                copiedLabel="Copied"
                 size="xs"
-              >
-                Copy
-              </Button>
+                variant="outline"
+              />
               <DownloadButton
                 leftSection={
                   <IconDownload style={{ width: rem(16), height: rem(16) }} />
