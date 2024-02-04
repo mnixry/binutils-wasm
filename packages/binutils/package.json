@@ -16,7 +16,7 @@
   ],
   "scripts": {
     "build:wrapper": "tsup",
-    "build:wasm": "node ./build/dist.js",
+    "build:wasm": "node ./build/dist.mjs",
     "build": "pnpm run build:wasm && pnpm run build:wrapper",
     "prebuild": "rm -rf ./build/dist"
   },

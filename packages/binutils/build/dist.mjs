@@ -1,13 +1,16 @@
-const { spawn } = require("child_process");
+import { spawn } from "node:child_process";
 
-if (typeof require !== "undefined" && require.main === module) {
+function main() {
   const extraArgs = process.argv.slice(2);
   if (extraArgs.length > 0) {
     console.log("Extra arguments:", extraArgs);
   }
   if (process.env["ACTIONS_RUNTIME_TOKEN"]) {
     console.log("Using GitHub Actions cache for Docker buildx");
-    extraArgs.push("--cache-to=type=gha,mode=max", "--cache-from=type=gha");
+    extraArgs.push(
+      "--cache-to=type=gha,mode=max,scope=binutils",
+      "--cache-from=type=gha,scope=binutils"
+    );
   }
   const ret = spawn("docker", [
     "buildx",
@@ -24,3 +27,5 @@ if (typeof require !== "undefined" && require.main === module) {
     process.exit(code ?? 0);
   });
 }
+
+main();
