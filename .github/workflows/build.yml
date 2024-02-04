@@ -38,7 +38,9 @@ jobs:
         id: find-dists
         run: |
           echo 'dirs<<EOF' >> $GITHUB_OUTPUT
-          echo $(find . -type d -name "*dist" -not -path "*/node_modules/*") >> $GITHUB_OUTPUT
+          for dir in $(find . -type d -name "*dist" -not -path "*/node_modules/*"); do
+            echo $dir >> $GITHUB_OUTPUT
+          done
           echo 'EOF' >> $GITHUB_OUTPUT
 
       - uses: actions/upload-artifact@v4
