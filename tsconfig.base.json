@@ -4,6 +4,9 @@
     "@tsconfig/strictest/tsconfig.json"
   ],
   "compilerOptions": {
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "moduleResolution": "Bundler",
+    "module": "ES2020",
+    "verbatimModuleSyntax": true
   }
 }
