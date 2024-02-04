@@ -266,8 +266,8 @@ export default function AssemblerPage() {
 
   return (
     <>
-      <Stack h="100%">
-        <Grid justify="space-between" align="center">
+      <Stack h="100%" gap={0}>
+        <Grid justify="space-between" align="center" mb="xs">
           <Grid.Col span="content">
             <Group px="md" mt="xs" align="flex-end">
               <Select
