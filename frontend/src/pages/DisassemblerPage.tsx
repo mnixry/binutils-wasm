@@ -1,9 +1,9 @@
 import { Grid, Group, SimpleGrid, Stack } from "@mantine/core";
 import { useResizeObserver } from "@mantine/hooks";
 import { useMemo, useState } from "react";
-import CodeMirrorEditor from "./CodeMirrorEditor";
+import CodeMirrorEditor from "../components/CodeMirrorEditor";
 
-export default function DisAssemblerPane() {
+export default function DisassemblerPage() {
   const [outerGridRef, outerGridDimensions] = useResizeObserver();
   const [innerGroupRef, innerGroupDimensions] = useResizeObserver();
   const innerEditorHeight = useMemo(

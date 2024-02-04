@@ -30,9 +30,9 @@ import {
 import * as shlex from "shlex";
 import ExecutionOutputGroup, {
   type ExecutionOutput,
-} from "./ExecutionOutputGroup";
-import CodeMirrorEditor from "./CodeMirrorEditor";
-import DownloadButton from "./DownloadButton";
+} from "../components/ExecutionOutputGroup";
+import CodeMirrorEditor from "../components/CodeMirrorEditor";
+import DownloadButton from "../components/DownloadButton";
 
 const publicPrefix = [
   '.section .shellcode,"awx"',
@@ -158,7 +158,7 @@ function shlexSplit(str: string) {
   }
 }
 
-export default function AssemblerPane() {
+export default function AssemblerPage() {
   const [containerRef, dimensions] = useResizeObserver();
 
   const [architecture, setArchitecture] =

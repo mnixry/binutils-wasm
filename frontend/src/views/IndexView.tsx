@@ -20,8 +20,8 @@ import {
 import { useState } from "react";
 import { useDisclosure } from "@mantine/hooks";
 
-import AssemblerPane from "../components/AssemblerPane";
-import DisAssemblerPane from "../components/DisAssemblerPane";
+import AssemblerPage from "../pages/AssemblerPage";
+import DisassemblerPage from "../pages/DisassemblerPage";
 
 export default function IndexPage() {
   const [mode, setMode] = useState<string>("asm");
@@ -126,7 +126,7 @@ export default function IndexPage() {
           </Center>
         </AppShell.Header>
         <AppShell.Main h="100vh">
-          {mode === "asm" ? <AssemblerPane /> : <DisAssemblerPane />}
+          {mode === "asm" ? <AssemblerPage /> : <DisassemblerPage />}
         </AppShell.Main>
       </AppShell>
     </>
