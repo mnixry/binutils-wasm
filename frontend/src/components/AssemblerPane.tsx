@@ -1,15 +1,10 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 
-import CodeMirror, { keymap } from "@uiw/react-codemirror";
-import { langs } from "@uiw/codemirror-extensions-langs";
-import { vscodeKeymap } from "@replit/codemirror-vscode-keymap";
-import { githubDark, githubLight } from "@uiw/codemirror-theme-github";
 import gasLoader from "@binutils-wasm/gas";
 import binutilsLoader from "@binutils-wasm/binutils";
 
 import {
   Alert,
-  Badge,
   Button,
   Code,
   Flex,
@@ -20,7 +15,6 @@ import {
   Stack,
   TextInput,
   rem,
-  useComputedColorScheme,
 } from "@mantine/core";
 import { useResizeObserver } from "@mantine/hooks";
 import {
@@ -31,10 +25,14 @@ import {
   IconDownload,
   IconCrane,
   IconSortAscending2,
-  IconFileText,
   IconInfoCircle,
 } from "@tabler/icons-react";
 import * as shlex from "shlex";
+import ExecutionOutputGroup, {
+  type ExecutionOutput,
+} from "./ExecutionOutputGroup";
+import CodeMirrorEditor from "./CodeMirrorEditor";
+import DownloadButton from "./DownloadButton";
 
 const publicPrefix = [
   '.section .shellcode,"awx"',
@@ -160,14 +158,7 @@ function shlexSplit(str: string) {
   }
 }
 
-interface ExecuteOutput {
-  program: string;
-  line: string;
-  fd: "stdout" | "stderr";
-}
-
 export default function AssemblerPane() {
-  const downloadLinkRef = useRef<HTMLAnchorElement>(null);
   const [containerRef, dimensions] = useResizeObserver();
 
   const [architecture, setArchitecture] =
@@ -208,7 +199,7 @@ export default function AssemblerPane() {
   );
 
   const [input, setInput] = useState("");
-  const [output, setOutput] = useState<ExecuteOutput[]>([]);
+  const [output, setOutput] = useState<ExecutionOutput[]>([]);
   const [data, setData] = useState<Uint8Array>();
   const hexData = useMemo(
     () =>
@@ -226,7 +217,6 @@ export default function AssemblerPane() {
   );
 
   const [elfData, setElfData] = useState<Uint8Array>();
-  const colorScheme = useComputedColorScheme("dark");
 
   const assemble = useCallback(async () => {
     if (!asParams || !objcopyParams) return;
@@ -238,7 +228,7 @@ export default function AssemblerPane() {
     setData(undefined);
     setElfData(undefined);
 
-    const output = [] as ExecuteOutput[],
+    const output = [] as ExecutionOutput[],
       inputData = new TextEncoder().encode(input);
     let elf: Uint8Array | undefined = undefined;
     await gas({
@@ -378,58 +368,33 @@ export default function AssemblerPane() {
               >
                 Copy
               </Button>
-              <Button
-                disabled={!data?.length}
+              <DownloadButton
                 leftSection={
                   <IconDownload style={{ width: rem(16), height: rem(16) }} />
                 }
-                onClick={() => {
-                  const blob = new Blob([data!], {
-                    type: "application/octet-stream",
-                  });
-                  const url = URL.createObjectURL(blob);
-                  const random = Math.random().toString(36).substring(7);
-                  const a = downloadLinkRef.current!;
-                  a.href = url;
-                  a.download = `${architectureInfo.target}-${random}.bin`;
-                  a.click();
-
-                  URL.revokeObjectURL(url);
-                }}
                 variant="outline"
                 size="xs"
+                filename={`${architectureInfo.target}-[hash].bin`}
+                data={data}
               >
                 Download Binary
-              </Button>
-              <Button
-                disabled={!elfData?.length}
+              </DownloadButton>
+              <DownloadButton
                 leftSection={
                   <IconDownload style={{ width: rem(16), height: rem(16) }} />
                 }
-                onClick={() => {
-                  const blob = new Blob([elfData!], {
-                    type: "application/octet-stream",
-                  });
-                  const url = URL.createObjectURL(blob);
-                  const random = Math.random().toString(36).substring(7);
-                  const a = downloadLinkRef.current!;
-                  a.href = url;
-                  a.download = `${architectureInfo.target}-${random}.out`;
-                  a.click();
-
-                  URL.revokeObjectURL(url);
-                }}
                 variant="outline"
                 size="xs"
+                filename={`${architectureInfo.target}-[hash].out`}
+                data={elfData}
               >
                 Download ELF File
-              </Button>
-              <a ref={downloadLinkRef} href="#" download="a.out" hidden />
+              </DownloadButton>
             </Flex>
           </Grid.Col>
         </Grid>
         <SimpleGrid h="100%" cols={2} ref={containerRef} spacing="xs">
-          <CodeMirror
+          <CodeMirrorEditor
             value={input}
             height={`${dimensions.height}px`}
             placeholder={
@@ -438,26 +403,10 @@ export default function AssemblerPane() {
             }
             editable={asParams !== undefined && objcopyParams !== undefined}
             onChange={setInput}
-            extensions={[langs.gas(), keymap.of(vscodeKeymap)]}
-            theme={colorScheme === "dark" ? githubDark : githubLight}
+            lang="gas"
           />
           <Stack h={dimensions.height}>
-            {!!output.length && (
-              <Alert
-                color="yellow"
-                title="Execution output"
-                icon={<IconFileText />}
-              >
-                {output.map((line, index) => (
-                  <Group pt={2} key={index}>
-                    <Badge color={line.fd === "stderr" ? "yellow" : "blue"}>
-                      {line.program}
-                    </Badge>
-                    <Code>{line.line}</Code>
-                  </Group>
-                ))}
-              </Alert>
-            )}
+            {!!output.length && <ExecutionOutputGroup output={output} />}
             {!!data?.length && <Code block>{hexData}</Code>}
             {!output.length && !data?.length && (
               <Alert
