@@ -1,8 +1,8 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
+import * as shlex from "shlex";
 
-import gasLoader from "@binutils-wasm/gas";
 import binutilsLoader from "@binutils-wasm/binutils";
-
+import gasLoader from "@binutils-wasm/gas";
 import {
   Alert,
   Button,
@@ -18,21 +18,21 @@ import {
 } from "@mantine/core";
 import { useResizeObserver } from "@mantine/hooks";
 import {
-  IconCpu,
   IconAssembly,
   IconCopy,
   IconCopyMinus,
-  IconDownload,
+  IconCpu,
   IconCrane,
-  IconSortAscending2,
+  IconDownload,
   IconInfoCircle,
+  IconSortAscending2,
 } from "@tabler/icons-react";
-import * as shlex from "shlex";
+
+import CodeMirrorEditor from "../components/CodeMirrorEditor";
+import DownloadButton from "../components/DownloadButton";
 import ExecutionOutputGroup, {
   type ExecutionOutput,
 } from "../components/ExecutionOutputGroup";
-import CodeMirrorEditor from "../components/CodeMirrorEditor";
-import DownloadButton from "../components/DownloadButton";
 
 const publicPrefix = [
   '.section .shellcode,"awx"',
@@ -165,7 +165,7 @@ export default function AssemblerPage() {
     useState<keyof typeof assemblers>("x86_64");
   const architectureInfo = useMemo(
     () => assemblers[architecture],
-    [architecture]
+    [architecture],
   );
   useEffect(() => {
     if (architectureInfo.acceptEndianness)
@@ -176,7 +176,7 @@ export default function AssemblerPage() {
       publicPrefix.join("\n") +
         "\n\t" +
         (architectureInfo.asmPrefix?.join("\n\t") ?? "") +
-        "\n\t"
+        "\n\t",
     );
   }, [architecture, architectureInfo]);
 
@@ -195,7 +195,7 @@ export default function AssemblerPage() {
   const [objcopyParamString, setObjcopyParamString] = useState("-j .shellcode");
   const objcopyParams = useMemo(
     () => shlexSplit(objcopyParamString),
-    [objcopyParamString]
+    [objcopyParamString],
   );
 
   const [input, setInput] = useState("");
@@ -208,12 +208,12 @@ export default function AssemblerPage() {
             .map(
               (byte, index) =>
                 byte.toString(16).padStart(2, "0") +
-                ((index + 1) % 16 === 0 ? "\n" : " ")
+                ((index + 1) % 16 === 0 ? "\n" : " "),
             )
             .join("")
             .trim()
         : undefined,
-    [data]
+    [data],
   );
 
   const [elfData, setElfData] = useState<Uint8Array>();
@@ -260,7 +260,7 @@ export default function AssemblerPage() {
   }, [asParams, objcopyParams, input, architectureInfo]);
   useEffect(() => {
     assemble().catch((e) =>
-      setOutput([{ program: "internal", line: e, fd: "stderr" }])
+      setOutput([{ program: "internal", line: e, fd: "stderr" }]),
     );
   }, [assemble]);
 

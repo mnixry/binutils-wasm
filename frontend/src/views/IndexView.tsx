@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 import {
   AppShell,
   Button,
@@ -10,15 +12,13 @@ import {
   Text,
   rem,
 } from "@mantine/core";
+import { useDisclosure } from "@mantine/hooks";
 import {
-  IconBoxSeam,
   IconBinary,
   IconBinaryOff,
+  IconBoxSeam,
   IconBrandGithub,
 } from "@tabler/icons-react";
-
-import { useState } from "react";
-import { useDisclosure } from "@mantine/hooks";
 
 import AssemblerPage from "../pages/AssemblerPage";
 import DisassemblerPage from "../pages/DisassemblerPage";

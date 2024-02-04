@@ -1,8 +1,8 @@
 import { useComputedColorScheme } from "@mantine/core";
+import { vscodeKeymap } from "@replit/codemirror-vscode-keymap";
+import { type LanguageName, langs } from "@uiw/codemirror-extensions-langs";
 import { githubDark, githubLight } from "@uiw/codemirror-theme-github";
 import ReactCodeMirror, { keymap } from "@uiw/react-codemirror";
-import { type LanguageName, langs } from "@uiw/codemirror-extensions-langs";
-import { vscodeKeymap } from "@replit/codemirror-vscode-keymap";
 
 type PropsType = Parameters<typeof ReactCodeMirror>[0];
 
