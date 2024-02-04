@@ -36,7 +36,14 @@ jobs:
       - name: Dry run publish
         run: pnpm -r publish --dry-run
 
+      - name: Fild dist directories
+        id: find-dists
+        run: |
+          echo 'dirs<<EOF' >> $GITHUB_OUTPUT
+          echo $(find . -type d -name "*dist" -not -path "*/node_modules/*") >> $GITHUB_OUTPUT
+          echo 'EOF' >> $GITHUB_OUTPUT
+
       - uses: actions/upload-artifact@v3
         with:
           name: dists
-          path: ./**/dist/*
+          path: ${{ steps.find-dists.outputs.dirs }}
