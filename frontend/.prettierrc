@@ -1,0 +1,11 @@
+{
+  "plugins": ["@trivago/prettier-plugin-sort-imports"],
+  "importOrder": [
+    "^(.*?)\\.((?:\\.?[0-9]+){3,}(?:[-a-z]+)?)$",
+    "^@(.+)/(.+)$",
+    "^@/(.+)$",
+    "^\\..?/(.+)$"
+  ],
+  "importOrderSeparation": true,
+  "importOrderSortSpecifiers": true
+}
