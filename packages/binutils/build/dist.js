@@ -13,7 +13,7 @@ if (typeof require !== "undefined" && require.main === module) {
     "buildx",
     "build",
     "--progress=plain",
-    "--build-arg=BRANCH=binutils-2_41-branch",
+    "--build-arg=BRANCH=binutils-2_42-branch",
     `--output=${process.cwd()}/build`,
     ...extraArgs,
     `${process.cwd()}/build`,
