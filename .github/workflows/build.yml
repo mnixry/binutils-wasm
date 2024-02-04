@@ -12,9 +12,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: docker/setup-qemu-action@v2
-
-      - uses: docker/setup-buildx-action@v2
+      - uses: docker/setup-buildx-action@v3
 
       - uses: crazy-max/ghaction-github-runtime@v3
 
@@ -43,7 +41,7 @@ jobs:
           echo $(find . -type d -name "*dist" -not -path "*/node_modules/*") >> $GITHUB_OUTPUT
           echo 'EOF' >> $GITHUB_OUTPUT
 
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: dists
           path: ${{ steps.find-dists.outputs.dirs }}
