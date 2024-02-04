@@ -16,9 +16,12 @@ import {
   IconBinaryOff,
   IconBrandGithub,
 } from "@tabler/icons-react";
-import AssemblerPane from "../components/AssemblerPane";
+
 import { useState } from "react";
 import { useDisclosure } from "@mantine/hooks";
+
+import AssemblerPane from "../components/AssemblerPane";
+import DisAssemblerPane from "../components/DisAssemblerPane";
 
 export default function IndexPage() {
   const [mode, setMode] = useState<string>("asm");
@@ -123,7 +126,7 @@ export default function IndexPage() {
           </Center>
         </AppShell.Header>
         <AppShell.Main h="100vh">
-          <AssemblerPane />
+          {mode === "asm" ? <AssemblerPane /> : <DisAssemblerPane />}
         </AppShell.Main>
       </AppShell>
     </>
