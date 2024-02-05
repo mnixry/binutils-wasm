@@ -10,6 +10,7 @@ import {
   Flex,
   Grid,
   Group,
+  LoadingOverlay,
   Select,
   SimpleGrid,
   Stack,
@@ -17,7 +18,11 @@ import {
   TextInput,
   rem,
 } from "@mantine/core";
-import { useResizeObserver } from "@mantine/hooks";
+import {
+  useDebouncedState,
+  useDisclosure,
+  useResizeObserver,
+} from "@mantine/hooks";
 import {
   IconAssembly,
   IconCopyMinus,
@@ -177,6 +182,7 @@ export default function AssemblerPage(props: StackProps) {
         (architectureInfo.asmPrefix?.join("\n\t") ?? "") +
         "\n\t",
     );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [architecture, architectureInfo]);
 
   const [selectedEndianness, setEndianness] = useState<Endianness>("big");
@@ -197,7 +203,7 @@ export default function AssemblerPage(props: StackProps) {
     [objcopyParamString],
   );
 
-  const [input, setInput] = useState("");
+  const [input, setInput] = useDebouncedState("", 200);
   const [output, setOutput] = useState<ExecutionOutput[]>([]);
   const [data, setData] = useState<Uint8Array>();
   const hexData = useMemo(
@@ -216,6 +222,8 @@ export default function AssemblerPage(props: StackProps) {
   );
 
   const [elfData, setElfData] = useState<Uint8Array>();
+  const [loading, { open: startLoading, close: stopLoading }] =
+    useDisclosure(false);
 
   const assemble = useCallback(async () => {
     if (!asParams || !objcopyParams) return;
@@ -258,10 +266,11 @@ export default function AssemblerPage(props: StackProps) {
     setOutput(output);
   }, [asParams, objcopyParams, input, architectureInfo]);
   useEffect(() => {
-    assemble().catch((e) =>
-      setOutput([{ program: "internal", line: e, fd: "stderr" }]),
-    );
-  }, [assemble]);
+    startLoading();
+    assemble()
+      .catch((e) => setOutput([{ program: "internal", line: e, fd: "stderr" }]))
+      .finally(stopLoading);
+  }, [assemble, startLoading, stopLoading]);
 
   return (
     <>
@@ -393,7 +402,7 @@ export default function AssemblerPage(props: StackProps) {
             onChange={setInput}
             lang="gas"
           />
-          <Stack h={dimensions.height}>
+          <Stack h={dimensions.height} pos="relative">
             <Collapse in={!!output.length}>
               <ExecutionOutputGroup output={output} />
             </Collapse>
@@ -409,6 +418,11 @@ export default function AssemblerPage(props: StackProps) {
                 No assembly output yet. Write some code and see what happens!
               </Alert>
             </Collapse>
+            <LoadingOverlay
+              visible={loading}
+              zIndex={1000}
+              overlayProps={{ radius: "sm", blur: 2 }}
+            />
           </Stack>
         </SimpleGrid>
       </Stack>
