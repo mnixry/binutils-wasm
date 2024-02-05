@@ -12,6 +12,7 @@ import {
   Select,
   SimpleGrid,
   Stack,
+  type StackProps,
   TextInput,
   rem,
 } from "@mantine/core";
@@ -19,19 +20,23 @@ import { useResizeObserver } from "@mantine/hooks";
 import {
   IconAssembly,
   IconCopyMinus,
-  IconCpu,
   IconCrane,
   IconDownload,
   IconInfoCircle,
-  IconSortAscending2,
 } from "@tabler/icons-react";
 
 import CodeMirrorEditor from "../components/CodeMirrorEditor";
 import CopyingButton from "../components/CopyingButton";
 import DownloadButton from "../components/DownloadButton";
+import EndiannessSegmentedControl, {
+  Endianness,
+} from "../components/EndiannessSegmentedControl";
 import ExecutionOutputGroup, {
   type ExecutionOutput,
 } from "../components/ExecutionOutputGroup";
+import ProcessorBitsSegmentedControl, {
+  ProcessorBits,
+} from "../components/ProcessorBitsSegmentedControl";
 
 const publicPrefix = [
   '.section .shellcode,"awx"',
@@ -43,12 +48,6 @@ const publicPrefix = [
 ];
 
 type SupportedTargets = Parameters<typeof gasLoader>[0];
-
-const endianness = ["big", "little"] as const;
-type Endianness = (typeof endianness)[number];
-
-const processorBits = [32, 64] as const;
-type ProcessorBits = (typeof processorBits)[number];
 
 const assemblers: Record<
   string,
@@ -157,7 +156,7 @@ function shlexSplit(str: string) {
   }
 }
 
-export default function AssemblerPage() {
+export default function AssemblerPage(props: StackProps) {
   const [containerRef, dimensions] = useResizeObserver();
 
   const [architecture, setArchitecture] =
@@ -265,10 +264,10 @@ export default function AssemblerPage() {
 
   return (
     <>
-      <Stack h="100%" gap={0}>
+      <Stack h="100%" gap={0} {...props}>
         <Grid justify="space-between" align="center" mb="xs">
           <Grid.Col span="content">
-            <Group px="md" mt="xs" align="flex-end">
+            <Group px="md" align="flex-end">
               <Select
                 label="Architecture"
                 leftSection={
@@ -283,39 +282,22 @@ export default function AssemblerPage() {
                   value && setArchitecture(value as keyof typeof assemblers)
                 }
                 size="xs"
+                styles={{
+                  wrapper: {
+                    width: rem(140),
+                  },
+                }}
               />
               {architectureInfo.acceptEndianness && (
-                <Select
-                  label="Endianness"
-                  leftSection={
-                    <IconSortAscending2
-                      style={{ width: rem(16), height: rem(16) }}
-                      stroke={1.5}
-                    />
-                  }
+                <EndiannessSegmentedControl
                   value={selectedEndianness}
-                  data={endianness}
-                  onChange={(value) =>
-                    value && setEndianness(value as Endianness)
-                  }
-                  size="xs"
+                  onChange={setEndianness}
                 />
               )}
               {architectureInfo.acceptBits && (
-                <Select
-                  label="Processor Bits"
-                  leftSection={
-                    <IconCpu
-                      style={{ width: rem(16), height: rem(16) }}
-                      stroke={1.5}
-                    />
-                  }
-                  value={`${selectedProcessorBits}` as const}
-                  data={processorBits.map((b) => `${b}`)}
-                  onChange={(value) =>
-                    value && setProcessorBits(+value as ProcessorBits)
-                  }
-                  size="xs"
+                <ProcessorBitsSegmentedControl
+                  value={selectedProcessorBits}
+                  onChange={setProcessorBits}
                 />
               )}
               <TextInput
@@ -334,6 +316,11 @@ export default function AssemblerPage() {
                   />
                 }
                 size="xs"
+                styles={{
+                  input: {
+                    fontFamily: "monospace",
+                  },
+                }}
               />
               <TextInput
                 label={
@@ -351,6 +338,11 @@ export default function AssemblerPage() {
                   />
                 }
                 size="xs"
+                styles={{
+                  input: {
+                    fontFamily: "monospace",
+                  },
+                }}
               />
             </Group>
           </Grid.Col>
