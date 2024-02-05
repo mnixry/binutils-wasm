@@ -10,6 +10,7 @@ import {
   Modal,
   SegmentedControl,
   Text,
+  Transition,
   rem,
 } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
@@ -126,7 +127,12 @@ export default function IndexPage() {
           </Center>
         </AppShell.Header>
         <AppShell.Main h="100vh">
-          {mode === "asm" ? <AssemblerPage /> : <DisassemblerPage />}
+          <Transition mounted={mode === "asm"}>
+            {(styles) => <AssemblerPage style={styles} />}
+          </Transition>
+          <Transition mounted={mode === "disasm"}>
+            {(styles) => <DisassemblerPage style={styles} />}
+          </Transition>
         </AppShell.Main>
       </AppShell>
     </>
