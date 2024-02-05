@@ -1,31 +1,36 @@
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import * as shlex from "shlex";
 
+import loader from "@binutils-wasm/binutils";
 import {
-  Button,
+  ActionIcon,
   Code,
+  Collapse,
   FileButton,
   Grid,
   Group,
+  LoadingOverlay,
   Select,
   SimpleGrid,
+  Space,
   Stack,
   type StackProps,
-  Switch,
-  Text,
   TextInput,
+  Tooltip,
   rem,
 } from "@mantine/core";
-import { useResizeObserver } from "@mantine/hooks";
+import { useDisclosure, useResizeObserver } from "@mantine/hooks";
 import {
-  IconAssembly,
   IconCopyPlus,
   IconCrane,
-  IconSortAscending2,
-  IconUpload,
+  IconDownload,
+  IconFolderOpen,
+  IconPackageExport,
 } from "@tabler/icons-react";
 
 import CodeMirrorEditor from "../components/CodeMirrorEditor";
+import CopyingButton from "../components/CopyingButton";
+import DownloadButton from "../components/DownloadButton";
 import EndiannessSegmentedControl, {
   Endianness,
 } from "../components/EndiannessSegmentedControl";
@@ -35,6 +40,7 @@ import ExecutionOutputGroup, {
 import ProcessorBitsSegmentedControl, {
   ProcessorBits,
 } from "../components/ProcessorBitsSegmentedControl";
+import TooltippedCheckbox from "../components/TooltippedCheckbox";
 
 function shlexSplit(str: string) {
   try {
@@ -158,10 +164,15 @@ const disassemblers: Record<
 
 export default function DisassemblerPage(props: StackProps) {
   const [outerGridRef, outerGridDimensions] = useResizeObserver();
-  const [innerGroupRef, innerGroupDimensions] = useResizeObserver();
-  const innerEditorHeight = useMemo(
-    () => outerGridDimensions.height - innerGroupDimensions.height,
-    [outerGridDimensions, innerGroupDimensions],
+  const [rightGridRef, rightTopDimensions] = useResizeObserver();
+  const [leftGridRef, leftDimensions] = useResizeObserver();
+  const rightEditorHeight = useMemo(
+    () => outerGridDimensions.height - rightTopDimensions.height,
+    [outerGridDimensions, rightTopDimensions],
+  );
+  const leftEditorHeight = useMemo(
+    () => outerGridDimensions.height - leftDimensions.height,
+    [outerGridDimensions, leftDimensions],
   );
 
   const [input, setInput] = useState("");
@@ -222,8 +233,13 @@ export default function DisassemblerPage(props: StackProps) {
 
   const [selectedEndianness, setEndianness] = useState<Endianness>("big");
   const [selectedProcessorBits, setProcessorBits] = useState<ProcessorBits>(64);
-  const [vma, setVma] = useState(0);
-  const [isByte, setIsByte] = useState(true);
+  const [showByte, { toggle: toggleByte }] = useDisclosure(true);
+  const [showOffset, { toggle: toggleOffset }] = useDisclosure(true);
+  const [showInstruction, { toggle: toggleInstruction }] = useDisclosure(true);
+  const [showRawAssembly, { toggle: toggleRawAssembly }] = useDisclosure(false);
+  const [showIntelSyntax, { toggle: toggleIntelSyntax }] = useDisclosure(true);
+  const [enableAutoFormatting, { toggle: toggleAutoFormatting }] =
+    useDisclosure(true);
   useEffect(() => {
     const { bfdArch, bfdNameFactory } = architectureInfo;
     const bfdName = bfdNameFactory({
@@ -231,8 +247,9 @@ export default function DisassemblerPage(props: StackProps) {
       b: selectedProcessorBits,
     });
 
-    const objDumpArgs = ["-w", "-d", `--adjust-vma=${vma}`, "-b", bfdName];
-    if (!isByte) objDumpArgs.push("--no-show-raw-insn");
+    const objDumpArgs = ["-w", "-d", `--adjust-vma=0`, "-b", bfdName];
+    if (!showByte) objDumpArgs.push("--no-show-raw-insn");
+    if (showIntelSyntax) objDumpArgs.push("-M", "intel");
     setObjDumpParamString(shlex.join(objDumpArgs));
     setObjCopyParamString(
       shlex.join([
@@ -244,14 +261,17 @@ export default function DisassemblerPage(props: StackProps) {
         ".data=code",
         "--rename-section",
         ".data=.text",
+        "-w",
+        "-N",
+        "*",
       ]),
     );
   }, [
     architectureInfo,
     selectedEndianness,
     selectedProcessorBits,
-    isByte,
-    vma,
+    showByte,
+    showIntelSyntax,
   ]);
 
   const [objCopyParamString, setObjCopyParamString] = useState("");
@@ -265,160 +285,298 @@ export default function DisassemblerPage(props: StackProps) {
     [objDumpParamString],
   );
   const [output, setOutput] = useState<ExecutionOutput[]>([]);
+  const [loading, { open: startLoading, close: stopLoading }] =
+    useDisclosure(false);
+
+  const [asm, setAsm] = useState("");
+  const disassemble = useCallback(async () => {
+    if (!objDumpParams || !objCopyParams || !inputBinary?.length) return;
+
+    const objdump = await loader("objdump"),
+      objcopy = await loader("objcopy");
+
+    const output = [] as ExecutionOutput[];
+    const logErr = (line: string) => (
+      output.push({ fd: "stderr", program: "internal", line }), output
+    );
+
+    let copiedBinary = undefined as Uint8Array | undefined;
+    await objcopy({
+      arguments: [...objCopyParams, "-I", "binary", "/tmp/a.out", "/tmp/a.bin"],
+      print: (line) => output.push({ fd: "stdout", program: "objcopy", line }),
+      printErr: (line) =>
+        output.push({ fd: "stderr", program: "objcopy", line }),
+      preRun: [(m) => m.FS.writeFile("/tmp/a.out", inputBinary)],
+      postRun: [(m) => (copiedBinary = m.FS.readFile("/tmp/a.bin"))],
+    });
+    if (!copiedBinary) return logErr("objcopy failed to copy the binary.");
+
+    let dumpStdout = "";
+    await objdump({
+      arguments: [...objDumpParams, "/tmp/a.out"],
+      print: (line) => (dumpStdout += line + "\n"),
+      printErr: (line) =>
+        output.push({ fd: "stderr", program: "objdump", line }),
+      preRun: [(m) => m.FS.writeFile("/tmp/a.out", copiedBinary!)],
+    });
+
+    const stdoutSplit = dumpStdout.split(/<\.text(?:\+0x0)?>:\n/m);
+    if (stdoutSplit.length !== 2)
+      return logErr("could not find .text section in objdump output");
+    const [, result] = stdoutSplit;
+
+    const lines = result.split("\n").map((line) => {
+      const pattern = showByte
+        ? /^(?<offset>\s*[0-9a-f]+:\s*)(?<byte>(?:[0-9a-f]+\s)+\s*)?(?<inst>.*)/
+        : /^(?<offset>\s*[0-9a-f]+:\s*)(?<inst>.*)/;
+      const match = line.match(pattern);
+      if (!match) return line;
+      const { offset, byte, inst } = match.groups!;
+
+      let fullLine = "";
+      if (showOffset) fullLine += offset;
+      if (showByte && byte) fullLine += byte;
+      if (showInstruction) fullLine += inst;
+      return fullLine;
+    });
+    setAsm(lines.join("\n"));
+    return output;
+  }, [
+    inputBinary,
+    objCopyParams,
+    objDumpParams,
+    showByte,
+    showInstruction,
+    showOffset,
+  ]);
+  useEffect(() => {
+    startLoading();
+    disassemble()
+      .then((output) => output && setOutput(output))
+      .catch((err) =>
+        setOutput([{ fd: "stderr", program: "internal", line: err }]),
+      )
+      .finally(stopLoading);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [disassemble]);
 
   return (
     <>
       <Stack h="100%" gap={0} {...props}>
-        <Grid justify="space-between" align="center" mb="xs">
-          <Grid.Col span="content">
-            <Group px="md" align="flex-end">
-              <FileButton
-                onChange={(f) => {
-                  if (!f) return;
-                  const reader = new FileReader();
-                  reader.onload = (e) =>
-                    e.target?.result &&
-                    setInputBinary(
-                      new Uint8Array(e.target?.result as ArrayBuffer),
-                    );
-                  reader.readAsArrayBuffer(f);
-                }}
-              >
-                {(props) => (
-                  <Button
-                    leftSection={
-                      <IconUpload style={{ width: rem(16), height: rem(16) }} />
-                    }
-                    size="xs"
-                    variant="outline"
-                    {...props}
-                  >
-                    Upload binary
-                  </Button>
-                )}
-              </FileButton>
-              <Select
-                label="Architecture"
-                leftSection={
-                  <IconCrane
-                    style={{ width: rem(16), height: rem(16) }}
-                    stroke={1.5}
-                  />
-                }
-                data={Object.keys(disassemblers)}
-                value={architecture}
-                onChange={(value) =>
-                  value && setArchitecture(value as keyof typeof disassemblers)
-                }
-                size="xs"
-                styles={{
-                  wrapper: {
-                    width: rem(140),
-                  },
-                }}
-              />
-              {architectureInfo.acceptEndianness && (
-                <EndiannessSegmentedControl
-                  value={selectedEndianness}
-                  onChange={setEndianness}
-                />
-              )}
-              {architectureInfo.acceptBits && (
-                <ProcessorBitsSegmentedControl
-                  value={selectedProcessorBits}
-                  onChange={setProcessorBits}
-                />
-              )}
-              <TextInput
-                label={
-                  <>
-                    <Code>objcopy</Code> parameters
-                  </>
-                }
-                value={objCopyParamString}
-                error={objCopyParams === undefined}
-                styles={{
-                  input: {
-                    fontFamily: "monospace",
-                  },
-                }}
-                onChange={(e) => setObjCopyParamString(e.currentTarget.value)}
-                leftSection={
-                  <IconCopyPlus
-                    style={{ width: rem(16), height: rem(16) }}
-                    stroke={1.5}
-                  />
-                }
-                size="xs"
-              />
-              <TextInput
-                label={
-                  <>
-                    <Code>objdump</Code> parameters
-                  </>
-                }
-                value={objDumpParamString}
-                error={objDumpParams === undefined}
-                styles={{
-                  input: {
-                    fontFamily: "monospace",
-                  },
-                }}
-                onChange={(e) => setObjDumpParamString(e.currentTarget.value)}
-                leftSection={
-                  <IconAssembly
-                    style={{ width: rem(16), height: rem(16) }}
-                    stroke={1.5}
-                  />
-                }
-                size="xs"
-              />
-              <TextInput
-                label="VMA"
-                value={vma}
-                styles={{
-                  input: {
-                    fontFamily: "monospace",
-                  },
-                }}
-                onChange={(e) => setVma(+e.currentTarget.value)}
-                leftSection={
-                  <IconSortAscending2
-                    style={{ width: rem(16), height: rem(16) }}
-                    stroke={1.5}
-                  />
-                }
-                size="xs"
-              />
-              <Stack gap="xs">
-                <Text size="xs">Byte</Text>
-                <Switch
-                  checked={isByte}
-                  onChange={(e) => setIsByte(e.currentTarget.checked)}
-                  size="sm"
-                />
-              </Stack>
-            </Group>
-          </Grid.Col>
-          <Grid.Col span="content"></Grid.Col>
-        </Grid>
         <SimpleGrid h="100%" cols={2} ref={outerGridRef} spacing="xs">
-          <CodeMirrorEditor
-            value={input}
-            height={`${outerGridDimensions.height}px`}
-            onChange={setInput}
-            onBlur={() => formattedInput && setInput(formattedInput)}
-          />
           <Stack h={outerGridDimensions.height} gap={0}>
-            <Stack ref={innerGroupRef}>
-              {output.length > 0 && (
-                <ExecutionOutputGroup output={output} mb="xs" />
-              )}
+            <Stack ref={leftGridRef}>
+              <Group px="md" pb="sm" pt={2} align="flex-end" gap="sm">
+                <FileButton
+                  onChange={(f) => {
+                    if (!f) return;
+                    const reader = new FileReader();
+                    reader.onload = (e) =>
+                      e.target?.result &&
+                      setInputBinary(
+                        new Uint8Array(e.target?.result as ArrayBuffer),
+                      );
+                    reader.readAsArrayBuffer(f);
+                  }}
+                >
+                  {(props) => (
+                    <Tooltip label="Open binary file">
+                      <ActionIcon size="xl" variant="light" {...props}>
+                        <IconFolderOpen
+                          style={{ width: rem(16), height: rem(16) }}
+                        />
+                      </ActionIcon>
+                    </Tooltip>
+                  )}
+                </FileButton>
+
+                <Select
+                  label="Architecture"
+                  leftSection={
+                    <IconCrane
+                      style={{ width: rem(16), height: rem(16) }}
+                      stroke={1.5}
+                    />
+                  }
+                  data={Object.keys(disassemblers)}
+                  value={architecture}
+                  onChange={(value) =>
+                    value &&
+                    setArchitecture(value as keyof typeof disassemblers)
+                  }
+                  size="xs"
+                  styles={{
+                    wrapper: {
+                      width: rem(140),
+                    },
+                  }}
+                />
+                {architectureInfo.acceptEndianness && (
+                  <EndiannessSegmentedControl
+                    value={selectedEndianness}
+                    onChange={setEndianness}
+                  />
+                )}
+                {architectureInfo.acceptBits && (
+                  <ProcessorBitsSegmentedControl
+                    value={selectedProcessorBits}
+                    onChange={setProcessorBits}
+                  />
+                )}
+                <SimpleGrid cols={3} spacing="xs">
+                  <TooltippedCheckbox
+                    tooltip="Include the hex-printed bytes in the disassembly"
+                    label="Byte"
+                    disabled={showRawAssembly}
+                    checked={showByte}
+                    onChange={toggleByte}
+                    size="xs"
+                  />
+                  <TooltippedCheckbox
+                    tooltip="Include the instruction contents in the disassembly"
+                    label="Instructions"
+                    disabled={showRawAssembly}
+                    checked={showInstruction}
+                    onChange={toggleInstruction}
+                    size="xs"
+                  />
+                  <TooltippedCheckbox
+                    tooltip="Include the virtual memory address in the disassembly"
+                    label="Offset"
+                    disabled={showRawAssembly}
+                    checked={showOffset}
+                    onChange={toggleOffset}
+                    size="xs"
+                  />
+                  <TooltippedCheckbox
+                    tooltip="Disassemble the entire ELF file, disable all pre and post processing"
+                    label="Dump only"
+                    checked={showRawAssembly}
+                    onChange={toggleRawAssembly}
+                    size="xs"
+                  />
+                  <TooltippedCheckbox
+                    tooltip="Use Intel syntax for disassembly"
+                    label="Intel syntax"
+                    checked={showIntelSyntax}
+                    onChange={toggleIntelSyntax}
+                    size="xs"
+                  />
+                  <TooltippedCheckbox
+                    tooltip="Automatically format the input binary hex string"
+                    label="Auto format"
+                    checked={enableAutoFormatting}
+                    onChange={toggleAutoFormatting}
+                    size="xs"
+                  />
+                </SimpleGrid>
+
+                <Grid w={rightTopDimensions.width}>
+                  <Grid.Col span={6}>
+                    <TextInput
+                      label={
+                        <>
+                          <Code>objcopy</Code> parameters
+                        </>
+                      }
+                      value={objCopyParamString}
+                      disabled={showRawAssembly}
+                      error={objCopyParams === undefined}
+                      styles={{
+                        input: {
+                          fontFamily: "monospace",
+                        },
+                      }}
+                      onChange={(e) =>
+                        setObjCopyParamString(e.currentTarget.value)
+                      }
+                      leftSection={
+                        <IconCopyPlus
+                          style={{ width: rem(16), height: rem(16) }}
+                          stroke={1.5}
+                        />
+                      }
+                      size="xs"
+                    />
+                  </Grid.Col>
+                  <Grid.Col span={6}>
+                    <TextInput
+                      label={
+                        <>
+                          <Code>objdump</Code> parameters
+                        </>
+                      }
+                      value={objDumpParamString}
+                      error={objDumpParams === undefined}
+                      styles={{
+                        input: {
+                          fontFamily: "monospace",
+                        },
+                      }}
+                      onChange={(e) =>
+                        setObjDumpParamString(e.currentTarget.value)
+                      }
+                      leftSection={
+                        <IconPackageExport
+                          style={{ width: rem(16), height: rem(16) }}
+                          stroke={1.5}
+                        />
+                      }
+                      size="xs"
+                    />
+                  </Grid.Col>
+                </Grid>
+              </Group>
             </Stack>
             <CodeMirrorEditor
-              height={`${innerEditorHeight}px`}
+              value={input}
+              height={`${leftEditorHeight}px`}
+              onChange={setInput}
+              onBlur={() =>
+                formattedInput &&
+                enableAutoFormatting &&
+                setInput(formattedInput)
+              }
+            />
+          </Stack>
+          <Stack h={outerGridDimensions.height} gap={0} pos="relative">
+            <Stack ref={rightGridRef}>
+              <Group justify="end" pt="md" px="md">
+                <CopyingButton
+                  value={asm}
+                  label="Copy"
+                  copiedLabel="Copied"
+                  size="xs"
+                  variant="outline"
+                />
+                <DownloadButton
+                  leftSection={
+                    <IconDownload style={{ width: rem(16), height: rem(16) }} />
+                  }
+                  variant="outline"
+                  data={asm}
+                  filename="objdump-[hash].s"
+                  contentType="text/plain"
+                  size="xs"
+                >
+                  Download
+                </DownloadButton>
+              </Group>
+              <Collapse in={output.length > 0}>
+                <ExecutionOutputGroup output={output} />
+              </Collapse>
+              <Space />
+            </Stack>
+            <CodeMirrorEditor
+              height={`${rightEditorHeight}px`}
+              value={asm}
               editable={false}
               lang="gas"
+            />
+            <LoadingOverlay
+              visible={loading}
+              zIndex={1000}
+              overlayProps={{ radius: "sm", blur: 2 }}
             />
           </Stack>
         </SimpleGrid>
