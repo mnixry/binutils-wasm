@@ -6,6 +6,7 @@ import gasLoader from "@binutils-wasm/gas";
 import {
   Alert,
   Code,
+  Collapse,
   Flex,
   Grid,
   Group,
@@ -265,7 +266,7 @@ export default function AssemblerPage(props: StackProps) {
   return (
     <>
       <Stack h="100%" gap={0} {...props}>
-        <Grid justify="space-between" align="center" mb="xs">
+        <Grid justify="space-between" align="center" mb="xs" pt={2}>
           <Grid.Col span="content">
             <Group px="md" align="flex-end">
               <Select
@@ -393,9 +394,13 @@ export default function AssemblerPage(props: StackProps) {
             lang="gas"
           />
           <Stack h={dimensions.height}>
-            {!!output.length && <ExecutionOutputGroup output={output} />}
-            {!!data?.length && <Code block>{hexData}</Code>}
-            {!output.length && !data?.length && (
+            <Collapse in={!!output.length}>
+              <ExecutionOutputGroup output={output} />
+            </Collapse>
+            <Collapse in={!!data?.length}>
+              <Code block>{hexData}</Code>
+            </Collapse>
+            <Collapse in={!output.length && !data?.length}>
               <Alert
                 color="gray"
                 title="No output yet"
@@ -403,7 +408,7 @@ export default function AssemblerPage(props: StackProps) {
               >
                 No assembly output yet. Write some code and see what happens!
               </Alert>
-            )}
+            </Collapse>
           </Stack>
         </SimpleGrid>
       </Stack>
