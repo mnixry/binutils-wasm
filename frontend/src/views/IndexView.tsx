@@ -95,13 +95,13 @@ export default function IndexPage() {
                     facilitated by the use of Mantine and Vite.
                   </Text>
                   <Button
+                    component="a"
                     leftSection={<IconBrandGithub />}
                     fullWidth
                     variant="outline"
                     mt="md"
-                    onClick={() =>
-                      window.open("https://github.com/mnixry/binutils-wasm")
-                    }
+                    href="https://github.com/mnixry/binutils-wasm"
+                    target="_blank"
                   >
                     Star on GitHub
                   </Button>
