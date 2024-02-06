@@ -1,6 +1,6 @@
 {
   "name": "@binutils-wasm/gas",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "GNU/Assembler compiled to WebAssembly",
   "repository": {
     "type": "git",
