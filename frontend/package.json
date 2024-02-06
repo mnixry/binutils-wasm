@@ -20,6 +20,7 @@
     "@uiw/codemirror-extensions-langs": "^4.21.21",
     "@uiw/codemirror-theme-github": "^4.21.21",
     "@uiw/react-codemirror": "^4.21.21",
+    "@vercel/speed-insights": "^1.0.9",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "shlex": "^2.1.2"

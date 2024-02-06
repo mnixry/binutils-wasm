@@ -8,4 +8,7 @@ export default defineConfig({
   optimizeDeps: {
     exclude: ["@binutils-wasm/binutils", "@binutils-wasm/gas"],
   },
+  define: {
+    "import.meta.env.VERCEL": JSON.stringify(process.env.VERCEL),
+  },
 });
