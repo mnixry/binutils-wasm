@@ -31,7 +31,7 @@ jobs:
         run: pnpm build
 
       - name: Dry run publish
-        run: pnpm -r publish --dry-run
+        run: pnpm -r publish --dry-run --no-git-checks
 
       - name: Fild dist directories
         id: find-dists
@@ -106,3 +106,36 @@ jobs:
               --prebuilt \
               --token=${{ env.VERCEL_TOKEN }}
           fi
+
+  release:
+    runs-on: ubuntu-latest
+    needs: build
+
+    if: github.ref_type == 'tag' && startsWith(github.ref_name, 'v')
+
+    permissions:
+      id-token: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: dists
+
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Release
+        run: |
+          pnpm config set '//registry.npmjs.org/:_authToken' '${{ secrets.NPM_TOKEN }}'
+          pnpm -r publish --provenance --access public --no-git-checks
