@@ -1,6 +1,6 @@
 # binutils-wasm
 
-![CI](https://github.com/mnixry/binutils-wasm/actions/workflows/build.yml/badge.svg) ![NPM Version of Binutils](https://img.shields.io/npm/v/%40binutils-wasm%2Fbinutils?style=flat&label=%40binutils-wasm%2Fbinutils)
+![CI](https://github.com/mnixry/binutils-wasm/actions/workflows/build.yml/badge.svg) ![NPM Version of GAS](https://img.shields.io/npm/v/%40binutils-wasm%2Fgas?label=%40binutils-wasm%2Fgas)
 
 This project is divided into several components:
 
@@ -10,37 +10,35 @@ This project is divided into several components:
 
 ## Introduction
 
-This is a WebAssembly port of GNU Assembler. It's available as an NPM package that can be used in Node.js or browser environments. The package is built using [EMScripten](https://emscripten.org/).
+This is a WebAssembly port of GNU Assembler (GAS). It's available as an NPM package that can be used in Node.js or browser environments. The package is built using [EMScripten](https://emscripten.org/).
 
 ## Features
 
-- Supports ALL architectures that are supported by GNU Binutils
-- Nearly identical in functionality to the original GNU Binutils
+- Supports mainstream architectures that are supported by GNU Assembler
+- Nearly identical in functionality to the original GNU Assembler
 
 ## Usage
 
 To use it, install the package from NPM and import it into your project.
 
 ```bash
-npm install @binutils-wasm/binutils
+npm install @binutils-wasm/gas
 ```
 
 ```javascript
-import loader from "@binutils-wasm/binutils";
+import loader from "@binutils-wasm/gas";
 
-const objdump = await loader('objdump');
-
-await objdump({
-    print: console.log,
-    printErr: console.error,
-    arguments: ['-d', 'a.out'],
-    preRun: [(m) => {
-        m.FS.writeFile('a.out', new Uint8Array([0x7f, 0x45, 0x4c, 0x46, 0x02, 0x01, 0x01, ...]));
-    }],
-    postRun: [(m) => {
-        console.log(m.FS.readFile('a.out'));
-    }]
-})
+const gas = await loader("x86_64-linux-gnu");
+await gas({
+  print: console.log,
+  printErr: console.error,
+  arguments: ["-c", "a.s"],
+  preRun: [
+    (m) => {
+      m.FS.writeFile("a.s", "movq %rax, %rbx");
+    },
+  ],
+});
 ```
 
 ## License
