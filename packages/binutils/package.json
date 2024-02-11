@@ -1,6 +1,6 @@
 {
   "name": "@binutils-wasm/binutils",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "GNU/Binutils compiled to WebAssembly",
   "repository": {
     "type": "git",
