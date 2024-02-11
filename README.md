@@ -6,7 +6,7 @@
 
 This project is divided into several components:
 
-- A WebAssembly version of GNU Binutils, available as an NPM package for use in Node.js or browser environments.
+- A WebAssembly version of GNU Binutils, available as an NPM package for use in Node.js or browser environments. (See [gas](https://www.npmjs.com/package/@binutils-wasm/gas) and [binutils](https://www.npmjs.com/package/@binutils-wasm/binutils))
 - A command-line tool based on the aforementioned package, providing a variety of platform-specific Binutils for use on any device that supports Node.js (work in progress).
 - A static web page built on the aforementioned package that offers assembly and disassembly for multiple architectures, accessible directly through a web browser. (This README is about this component)
 
