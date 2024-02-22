@@ -18,7 +18,7 @@ jobs:
 
       - uses: crazy-max/ghaction-github-runtime@v3
 
-      - uses: pnpm/action-setup@v2
+      - uses: pnpm/action-setup@v3
         with:
           version: 8
 
@@ -75,7 +75,7 @@ jobs:
         with:
           name: dists
 
-      - uses: pnpm/action-setup@v2
+      - uses: pnpm/action-setup@v3
         with:
           version: 8
 
