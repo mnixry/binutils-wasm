@@ -2,7 +2,11 @@ name: CI
 
 on:
   push:
+    branches-ignore:
+      - "renovate/**"
+      - "dependabot/**"
   pull_request_target:
+    types: [opened, synchronize, reopened]
   workflow_dispatch:
 
 env:
@@ -12,6 +16,8 @@ env:
 jobs:
   build:
     runs-on: ubuntu-latest
+
+    if: "${{ github.event_name != 'push' || !startsWith(github.ref, 'refs/pull/') }}"
 
     permissions:
       id-token: write
@@ -69,7 +75,8 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
 
-    if: github.event_name != 'push' || !startsWith(github.event.pull_request.head.ref, 'ref/pull/')
+    permissions:
+      pull-requests: write
 
     steps:
       - uses: actions/checkout@v4
@@ -93,6 +100,7 @@ jobs:
         with:
           vercel-token: ${{ secrets.VERCEL_TOKEN }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
+          github-comment: ${{ github.event_name == 'pull_request_target' }}
           vercel-args: ${{ env.CHECKOUT_ENV == 'production' && '--prod' || ''}}
           vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
           vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
