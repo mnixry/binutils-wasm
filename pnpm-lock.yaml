@@ -31,7 +31,7 @@ importers:
         version: link:../packages/gas
       '@mantine/core':
         specifier: ^7.6.0
-        version: 7.6.0(@mantine/hooks@7.6.0)(@types/react@18.2.59)(react-dom@18.2.0)(react@18.2.0)
+        version: 7.6.0(@mantine/hooks@7.6.0)(@types/react@18.2.60)(react-dom@18.2.0)(react@18.2.0)
       '@mantine/hooks':
         specifier: ^7.6.0
         version: 7.6.0(react@18.2.0)
@@ -68,7 +68,7 @@ importers:
         version: 4.3.0(prettier@3.2.5)
       '@types/react':
         specifier: ^18.2.59
-        version: 18.2.59
+        version: 18.2.60
       '@types/react-dom':
         specifier: ^18.2.19
         version: 18.2.19
@@ -1189,7 +1189,7 @@ packages:
       '@lezer/lr': 1.4.0
     dev: false
 
-  /@mantine/core@7.6.0(@mantine/hooks@7.6.0)(@types/react@18.2.59)(react-dom@18.2.0)(react@18.2.0):
+  /@mantine/core@7.6.0(@mantine/hooks@7.6.0)(@types/react@18.2.60)(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-TZNoOqk13r4KDO0MuvyKUqI9Z57QilEk+LAKO4bSWoCvIfvPijv+QuSVoUlqk8Y0aI1OBUbMAvUMkTOBDtA5Tw==}
     peerDependencies:
       '@mantine/hooks': 7.6.0
@@ -1202,8 +1202,8 @@ packages:
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
       react-number-format: 5.3.3(react-dom@18.2.0)(react@18.2.0)
-      react-remove-scroll: 2.5.7(@types/react@18.2.59)(react@18.2.0)
-      react-textarea-autosize: 8.5.3(@types/react@18.2.59)(react@18.2.0)
+      react-remove-scroll: 2.5.7(@types/react@18.2.60)(react@18.2.0)
+      react-textarea-autosize: 8.5.3(@types/react@18.2.60)(react@18.2.0)
       type-fest: 3.13.1
     transitivePeerDependencies:
       - '@types/react'
@@ -1550,11 +1550,11 @@ packages:
   /@types/react-dom@18.2.19:
     resolution: {integrity: sha512-aZvQL6uUbIJpjZk4U8JZGbau9KDeAwMfmhyWorxgBkqDIEf6ROjRozcmPIicqsUwPUjbkDfHKgGee1Lq65APcA==}
     dependencies:
-      '@types/react': 18.2.59
+      '@types/react': 18.2.60
     dev: true
 
-  /@types/react@18.2.59:
-    resolution: {integrity: sha512-DE+F6BYEC8VtajY85Qr7mmhTd/79rJKIHCg99MU9SWPB4xvLb6D1za2vYflgZfmPqQVEr6UqJTnLXEwzpVPuOg==}
+  /@types/react@18.2.60:
+    resolution: {integrity: sha512-dfiPj9+k20jJrLGOu9Nf6eqxm2EyJRrq2NvwOFsfbb7sFExZ9WELPs67UImHj3Ayxg8ruTtKtNnbjaF8olPq0A==}
     dependencies:
       '@types/prop-types': 15.7.11
       '@types/scheduler': 0.16.8
@@ -3037,7 +3037,7 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: true
 
-  /react-remove-scroll-bar@2.3.5(@types/react@18.2.59)(react@18.2.0):
+  /react-remove-scroll-bar@2.3.5(@types/react@18.2.60)(react@18.2.0):
     resolution: {integrity: sha512-3cqjOqg6s0XbOjWvmasmqHch+RLxIEk2r/70rzGXuz3iIGQsQheEQyqYCBb5EECoD01Vo2SIbDqW4paLeLTASw==}
     engines: {node: '>=10'}
     peerDependencies:
@@ -3047,13 +3047,13 @@ packages:
       '@types/react':
         optional: true
     dependencies:
-      '@types/react': 18.2.59
+      '@types/react': 18.2.60
       react: 18.2.0
-      react-style-singleton: 2.2.1(@types/react@18.2.59)(react@18.2.0)
+      react-style-singleton: 2.2.1(@types/react@18.2.60)(react@18.2.0)
       tslib: 2.6.2
     dev: false
 
-  /react-remove-scroll@2.5.7(@types/react@18.2.59)(react@18.2.0):
+  /react-remove-scroll@2.5.7(@types/react@18.2.60)(react@18.2.0):
     resolution: {integrity: sha512-FnrTWO4L7/Bhhf3CYBNArEG/yROV0tKmTv7/3h9QCFvH6sndeFf1wPqOcbFVu5VAulS5dV1wGT3GZZ/1GawqiA==}
     engines: {node: '>=10'}
     peerDependencies:
@@ -3063,16 +3063,16 @@ packages:
       '@types/react':
         optional: true
     dependencies:
-      '@types/react': 18.2.59
+      '@types/react': 18.2.60
       react: 18.2.0
-      react-remove-scroll-bar: 2.3.5(@types/react@18.2.59)(react@18.2.0)
-      react-style-singleton: 2.2.1(@types/react@18.2.59)(react@18.2.0)
+      react-remove-scroll-bar: 2.3.5(@types/react@18.2.60)(react@18.2.0)
+      react-style-singleton: 2.2.1(@types/react@18.2.60)(react@18.2.0)
       tslib: 2.6.2
-      use-callback-ref: 1.3.1(@types/react@18.2.59)(react@18.2.0)
-      use-sidecar: 1.1.2(@types/react@18.2.59)(react@18.2.0)
+      use-callback-ref: 1.3.1(@types/react@18.2.60)(react@18.2.0)
+      use-sidecar: 1.1.2(@types/react@18.2.60)(react@18.2.0)
     dev: false
 
-  /react-style-singleton@2.2.1(@types/react@18.2.59)(react@18.2.0):
+  /react-style-singleton@2.2.1(@types/react@18.2.60)(react@18.2.0):
     resolution: {integrity: sha512-ZWj0fHEMyWkHzKYUr2Bs/4zU6XLmq9HsgBURm7g5pAVfyn49DgUiNgY2d4lXRlYSiCif9YBGpQleewkcqddc7g==}
     engines: {node: '>=10'}
     peerDependencies:
@@ -3082,14 +3082,14 @@ packages:
       '@types/react':
         optional: true
     dependencies:
-      '@types/react': 18.2.59
+      '@types/react': 18.2.60
       get-nonce: 1.0.1
       invariant: 2.2.4
       react: 18.2.0
       tslib: 2.6.2
     dev: false
 
-  /react-textarea-autosize@8.5.3(@types/react@18.2.59)(react@18.2.0):
+  /react-textarea-autosize@8.5.3(@types/react@18.2.60)(react@18.2.0):
     resolution: {integrity: sha512-XT1024o2pqCuZSuBt9FwHlaDeNtVrtCXu0Rnz88t1jUGheCLa3PhjE1GH8Ctm2axEtvdCl5SUHYschyQ0L5QHQ==}
     engines: {node: '>=10'}
     peerDependencies:
@@ -3098,7 +3098,7 @@ packages:
       '@babel/runtime': 7.23.9
       react: 18.2.0
       use-composed-ref: 1.3.0(react@18.2.0)
-      use-latest: 1.2.1(@types/react@18.2.59)(react@18.2.0)
+      use-latest: 1.2.1(@types/react@18.2.60)(react@18.2.0)
     transitivePeerDependencies:
       - '@types/react'
     dev: false
@@ -3480,7 +3480,7 @@ packages:
       punycode: 2.3.1
     dev: true
 
-  /use-callback-ref@1.3.1(@types/react@18.2.59)(react@18.2.0):
+  /use-callback-ref@1.3.1(@types/react@18.2.60)(react@18.2.0):
     resolution: {integrity: sha512-Lg4Vx1XZQauB42Hw3kK7JM6yjVjgFmFC5/Ab797s79aARomD2nEErc4mCgM8EZrARLmmbWpi5DGCadmK50DcAQ==}
     engines: {node: '>=10'}
     peerDependencies:
@@ -3490,7 +3490,7 @@ packages:
       '@types/react':
         optional: true
     dependencies:
-      '@types/react': 18.2.59
+      '@types/react': 18.2.60
       react: 18.2.0
       tslib: 2.6.2
     dev: false
@@ -3503,7 +3503,7 @@ packages:
       react: 18.2.0
     dev: false
 
-  /use-isomorphic-layout-effect@1.1.2(@types/react@18.2.59)(react@18.2.0):
+  /use-isomorphic-layout-effect@1.1.2(@types/react@18.2.60)(react@18.2.0):
     resolution: {integrity: sha512-49L8yCO3iGT/ZF9QttjwLF/ZD9Iwto5LnH5LmEdk/6cFmXddqi2ulF0edxTwjj+7mqvpVVGQWvbXZdn32wRSHA==}
     peerDependencies:
       '@types/react': '*'
@@ -3512,11 +3512,11 @@ packages:
       '@types/react':
         optional: true
     dependencies:
-      '@types/react': 18.2.59
+      '@types/react': 18.2.60
       react: 18.2.0
     dev: false
 
-  /use-latest@1.2.1(@types/react@18.2.59)(react@18.2.0):
+  /use-latest@1.2.1(@types/react@18.2.60)(react@18.2.0):
     resolution: {integrity: sha512-xA+AVm/Wlg3e2P/JiItTziwS7FK92LWrDB0p+hgXloIMuVCeJJ8v6f0eeHyPZaJrM+usM1FkFfbNCrJGs8A/zw==}
     peerDependencies:
       '@types/react': '*'
@@ -3525,12 +3525,12 @@ packages:
       '@types/react':
         optional: true
     dependencies:
-      '@types/react': 18.2.59
+      '@types/react': 18.2.60
       react: 18.2.0
-      use-isomorphic-layout-effect: 1.1.2(@types/react@18.2.59)(react@18.2.0)
+      use-isomorphic-layout-effect: 1.1.2(@types/react@18.2.60)(react@18.2.0)
     dev: false
 
-  /use-sidecar@1.1.2(@types/react@18.2.59)(react@18.2.0):
+  /use-sidecar@1.1.2(@types/react@18.2.60)(react@18.2.0):
     resolution: {integrity: sha512-epTbsLuzZ7lPClpz2TyryBfztm7m+28DlEv2ZCQ3MDr5ssiwyOwGH/e5F9CkfWjJ1t4clvI58yF822/GUkjjhw==}
     engines: {node: '>=10'}
     peerDependencies:
@@ -3540,7 +3540,7 @@ packages:
       '@types/react':
         optional: true
     dependencies:
-      '@types/react': 18.2.59
+      '@types/react': 18.2.60
       detect-node-es: 1.1.0
       react: 18.2.0
       tslib: 2.6.2
