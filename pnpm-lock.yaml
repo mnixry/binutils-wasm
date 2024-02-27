@@ -9,8 +9,8 @@ importers:
   .:
     devDependencies:
       '@tsconfig/node-lts':
-        specifier: ^18.12.5
-        version: 18.12.5
+        specifier: ^20.0.0
+        version: 20.1.1
       '@tsconfig/strictest':
         specifier: ^2.0.3
         version: 2.0.3
@@ -1493,8 +1493,8 @@ packages:
       - supports-color
     dev: true
 
-  /@tsconfig/node-lts@18.12.5:
-    resolution: {integrity: sha512-KJZX0kQ5FBv77WDVzmQ9y1dUjaJCNXAAz3LSsg5cMwH0AUijVdDQtII+IVprEXdb13U9GjVOBxBzyRvr/ozPxw==}
+  /@tsconfig/node-lts@20.1.1:
+    resolution: {integrity: sha512-V7wHydi1dv8I8xiOX3pJ0lhC+MlOakznvLks94J6y/TqQK6DBcbdD1G4jEq8yU+s6lBASPn4e1Ci636fDqeyvQ==}
     dev: true
 
   /@tsconfig/strictest@2.0.3:
