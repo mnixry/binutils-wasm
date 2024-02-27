@@ -7,7 +7,7 @@ on:
 
 env:
   CHECKOUT_REF: ${{ github.event.pull_request.head.sha || github.sha }}
-  NODE_ENV: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' && 'production' || 'development'}}
+  CHECKOUT_ENV: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' && 'production' || 'development'}}
 
 jobs:
   build:
@@ -93,6 +93,6 @@ jobs:
         with:
           vercel-token: ${{ secrets.VERCEL_TOKEN }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          vercel-args: ${{ env.NODE_ENV == 'production' && '--prod' || ''}}
+          vercel-args: ${{ env.CHECKOUT_ENV == 'production' && '--prod' || ''}}
           vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
           vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
