@@ -31,10 +31,10 @@ importers:
         version: link:../packages/gas
       '@mantine/core':
         specifier: ^7.6.0
-        version: 7.6.0(@mantine/hooks@7.6.0)(@types/react@18.2.60)(react-dom@18.2.0)(react@18.2.0)
+        version: 7.6.1(@mantine/hooks@7.6.1)(@types/react@18.2.60)(react-dom@18.2.0)(react@18.2.0)
       '@mantine/hooks':
         specifier: ^7.6.0
-        version: 7.6.0(react@18.2.0)
+        version: 7.6.1(react@18.2.0)
       '@replit/codemirror-vscode-keymap':
         specifier: ^6.0.2
         version: 6.0.2(@codemirror/autocomplete@6.12.0)(@codemirror/commands@6.3.3)(@codemirror/language@6.10.1)(@codemirror/lint@6.5.0)(@codemirror/search@6.5.6)(@codemirror/state@6.4.1)(@codemirror/view@6.24.1)
@@ -1189,15 +1189,15 @@ packages:
       '@lezer/lr': 1.4.0
     dev: false
 
-  /@mantine/core@7.6.0(@mantine/hooks@7.6.0)(@types/react@18.2.60)(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-TZNoOqk13r4KDO0MuvyKUqI9Z57QilEk+LAKO4bSWoCvIfvPijv+QuSVoUlqk8Y0aI1OBUbMAvUMkTOBDtA5Tw==}
+  /@mantine/core@7.6.1(@mantine/hooks@7.6.1)(@types/react@18.2.60)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-52BgYXAMD+E6vDiGIGOJlLBc0pdT2+gzrB0g+v7c7xeiNXqHEG5cEplLErfNBHh9kMQHiDHCiCb5Su9jqoUlXw==}
     peerDependencies:
-      '@mantine/hooks': 7.6.0
+      '@mantine/hooks': 7.6.1
       react: ^18.2.0
       react-dom: ^18.2.0
     dependencies:
       '@floating-ui/react': 0.26.9(react-dom@18.2.0)(react@18.2.0)
-      '@mantine/hooks': 7.6.0(react@18.2.0)
+      '@mantine/hooks': 7.6.1(react@18.2.0)
       clsx: 2.1.0
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
@@ -1209,8 +1209,8 @@ packages:
       - '@types/react'
     dev: false
 
-  /@mantine/hooks@7.6.0(react@18.2.0):
-    resolution: {integrity: sha512-TUYM1uC2bF2DkkOfL8/fQQuwrNPQufg5H2uYoV9WaPyWtR+MlZs8UgbucVpOD2dEdVJjkfPOcQfi8Wim0gktmw==}
+  /@mantine/hooks@7.6.1(react@18.2.0):
+    resolution: {integrity: sha512-zsOGzFRcQZuER2rzAjfrAqp98W7WCFA43nF1QZUKV7AHTq8q1mtr3DOhFfO3/CA+t1lai68gp1guVcIhP4lrwQ==}
     peerDependencies:
       react: ^18.2.0
     dependencies:
