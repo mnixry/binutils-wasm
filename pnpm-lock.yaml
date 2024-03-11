@@ -9,16 +9,16 @@ importers:
   .:
     devDependencies:
       '@tsconfig/node-lts':
-        specifier: ^20.0.0
+        specifier: ^20.1.1
         version: 20.1.1
       '@tsconfig/strictest':
         specifier: ^2.0.3
         version: 2.0.3
       '@types/node':
-        specifier: ^20.11.20
+        specifier: ^20.11.25
         version: 20.11.25
       typescript:
-        specifier: ^5.3.3
+        specifier: ^5.4.2
         version: 5.4.2
 
   frontend:
@@ -30,10 +30,10 @@ importers:
         specifier: workspace:^
         version: link:../packages/gas
       '@mantine/core':
-        specifier: ^7.6.0
+        specifier: ^7.6.1
         version: 7.6.1(@mantine/hooks@7.6.1)(@types/react@18.2.64)(react-dom@18.2.0)(react@18.2.0)
       '@mantine/hooks':
-        specifier: ^7.6.0
+        specifier: ^7.6.1
         version: 7.6.1(react@18.2.0)
       '@replit/codemirror-vscode-keymap':
         specifier: ^6.0.2
@@ -67,16 +67,16 @@ importers:
         specifier: ^4.3.0
         version: 4.3.0(prettier@3.2.5)
       '@types/react':
-        specifier: ^18.2.59
+        specifier: ^18.2.64
         version: 18.2.64
       '@types/react-dom':
-        specifier: ^18.2.19
+        specifier: ^18.2.21
         version: 18.2.21
       '@typescript-eslint/eslint-plugin':
-        specifier: ^7.0.0
+        specifier: ^7.1.1
         version: 7.1.1(@typescript-eslint/parser@7.1.1)(eslint@8.57.0)(typescript@5.4.2)
       '@typescript-eslint/parser':
-        specifier: ^7.0.0
+        specifier: ^7.1.1
         version: 7.1.1(eslint@8.57.0)(typescript@5.4.2)
       '@vitejs/plugin-react':
         specifier: ^4.2.1
@@ -103,10 +103,10 @@ importers:
         specifier: ^3.2.5
         version: 3.2.5
       typescript:
-        specifier: ^5.3.3
+        specifier: ^5.4.2
         version: 5.4.2
       vite:
-        specifier: ^5.1.4
+        specifier: ^5.1.5
         version: 5.1.5(@types/node@20.11.25)
 
   packages/binutils:
@@ -1964,7 +1964,7 @@ packages:
     engines: {node: ^6 || ^7 || ^8 || ^9 || ^10 || ^11 || ^12 || >=13.7}
     hasBin: true
     dependencies:
-      caniuse-lite: 1.0.30001596
+      caniuse-lite: 1.0.30001597
       electron-to-chromium: 1.4.699
       node-releases: 2.0.14
       update-browserslist-db: 1.0.13(browserslist@4.23.0)
@@ -1995,8 +1995,8 @@ packages:
     engines: {node: '>= 6'}
     dev: true
 
-  /caniuse-lite@1.0.30001596:
-    resolution: {integrity: sha512-zpkZ+kEr6We7w63ORkoJ2pOfBwBkY/bJrG/UZ90qNb45Isblu8wzDgevEOrRL1r9dWayHjYiiyCMEXPn4DweGQ==}
+  /caniuse-lite@1.0.30001597:
+    resolution: {integrity: sha512-7LjJvmQU6Sj7bL0j5b5WY/3n7utXUJvAe1lxhsHDbLmwX9mdL86Yjtr+5SRCyf8qME4M7pU2hswj0FpyBVCv9w==}
     dev: true
 
   /chalk@2.4.2:
