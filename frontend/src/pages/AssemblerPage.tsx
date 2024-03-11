@@ -31,8 +31,8 @@ import {
   IconInfoCircle,
 } from "@tabler/icons-react";
 
+import BufferCopyingButton from "../components/BufferCopyingButton";
 import CodeMirrorEditor from "../components/CodeMirrorEditor";
-import CopyingButton from "../components/CopyingButton";
 import DownloadButton from "../components/DownloadButton";
 import EndiannessSegmentedControl, {
   Endianness,
@@ -358,13 +358,7 @@ export default function AssemblerPage(props: StackProps) {
           </Grid.Col>
           <Grid.Col span="content">
             <Flex px="md" pt="md" align="flex-end" gap="md">
-              <CopyingButton
-                value={hexData}
-                label="Copy"
-                copiedLabel="Copied"
-                size="xs"
-                variant="outline"
-              />
+              <BufferCopyingButton value={data} size="xs" variant="outline" />
               <DownloadButton
                 leftSection={
                   <IconDownload style={{ width: rem(16), height: rem(16) }} />
