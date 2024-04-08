@@ -3,7 +3,8 @@
   "extends": ["config:recommended"],
   "lockFileMaintenance": {
     "enabled": true,
-    "automerge": true
+    "automerge": true,
+    "schedule": ["on tuesday at 3am"]
   },
   "packageRules": [
     {
