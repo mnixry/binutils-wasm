@@ -40,7 +40,7 @@ importers:
         version: 6.0.2(@codemirror/autocomplete@6.16.0(@codemirror/language@6.10.1)(@codemirror/state@6.4.1)(@codemirror/view@6.26.3)(@lezer/common@1.2.1))(@codemirror/commands@6.5.0)(@codemirror/language@6.10.1)(@codemirror/lint@6.5.0)(@codemirror/search@6.5.6)(@codemirror/state@6.4.1)(@codemirror/view@6.26.3)
       '@tabler/icons-react':
         specifier: ^3.1.0
-        version: 3.2.0(react@18.3.1)
+        version: 3.3.0(react@18.3.1)
       '@uiw/codemirror-extensions-langs':
         specifier: ^4.21.25
         version: 4.22.0(@codemirror/autocomplete@6.16.0(@codemirror/language@6.10.1)(@codemirror/state@6.4.1)(@codemirror/view@6.26.3)(@lezer/common@1.2.1))(@codemirror/language-data@6.5.0(@codemirror/view@6.26.3))(@codemirror/language@6.10.1)(@codemirror/legacy-modes@6.4.0)(@codemirror/state@6.4.1)(@codemirror/view@6.26.3)(@lezer/common@1.2.1)(@lezer/highlight@1.2.0)(@lezer/javascript@1.4.15)(@lezer/lr@1.4.0)
@@ -757,8 +757,8 @@ packages:
   '@lezer/xml@1.0.5':
     resolution: {integrity: sha512-VFouqOzmUWfIg+tfmpcdV33ewtK+NSwd4ngSe1aG7HFb4BN0ExyY1b8msp+ndFrnlG4V4iC8yXacjFtrwERnaw==}
 
-  '@lezer/yaml@1.0.2':
-    resolution: {integrity: sha512-XCkwuxe+eumJ28nA9e1S6XKsXz9W7V/AG+WBiWOtiIuUpKcZ/bHuvN8bLxSDREIcybSRpEd/jvphh4vgm6Ed2g==}
+  '@lezer/yaml@1.0.3':
+    resolution: {integrity: sha512-GuBLekbw9jDBDhGur82nuwkxKQ+a3W5H0GfaAthDXcAu+XdpS43VlnxA9E9hllkpSP5ellRDKjLLj7Lu9Wr6xA==}
 
   '@mantine/core@7.8.1':
     resolution: {integrity: sha512-dttbP2BhBzFJYBqgAQedJRca5+MXlJbppRhRsufnFeO7YC/UpZutOoHQ9dxGEQnhAWJ/d+wuRvYWG/gXex+wYQ==}
@@ -1002,13 +1002,13 @@ packages:
     cpu: [x64]
     os: [win32]
 
-  '@tabler/icons-react@3.2.0':
-    resolution: {integrity: sha512-b1mZT1XpZrzvbM+eFe1YbYbxkzgJ18tM4knZKqXh0gnHDZ6XVLIH3TzJZ3HZ7PTkUqZLZ7XcGae3qQVGburlBw==}
+  '@tabler/icons-react@3.3.0':
+    resolution: {integrity: sha512-Qn1Po+0gErh1zCWlaOdoVoGqeonWfSuiboYgwZBs6PIJNsj7yr3bIa4BkHmgJgtlXLT9LvCzt/RvwlgjxLfjjg==}
     peerDependencies:
       react: '>= 16'
 
-  '@tabler/icons@3.2.0':
-    resolution: {integrity: sha512-h8GQ2rtxgiSjltrVz4vcopAxTPSpUSUi5nBfJ09H3Bk4fJk6wZ/dVUjzhv/BHfDwGTkAxZBiYe/Q/T95cPeg5Q==}
+  '@tabler/icons@3.3.0':
+    resolution: {integrity: sha512-PLVe9d7b59sKytbx00KgeGhQG3N176Ezv8YMmsnSz4s0ifDzMWlp/h2wEfQZ0ZNe8e377GY2OW6kovUe3Rnd0g==}
 
   '@trivago/prettier-plugin-sort-imports@4.3.0':
     resolution: {integrity: sha512-r3n0onD3BTOVUNPhR4lhVK4/pABGpbA7bW3eumZnYdKaHkf1qEC+Mag6DPbGNuuh0eG8AaYj+YqmVHSiGslaTQ==}
@@ -2602,7 +2602,7 @@ snapshots:
       '@codemirror/state': 6.4.1
       '@lezer/common': 1.2.1
       '@lezer/highlight': 1.2.0
-      '@lezer/yaml': 1.0.2
+      '@lezer/yaml': 1.0.3
     transitivePeerDependencies:
       - '@codemirror/view'
 
@@ -2991,7 +2991,7 @@ snapshots:
       '@lezer/highlight': 1.2.0
       '@lezer/lr': 1.4.0
 
-  '@lezer/yaml@1.0.2':
+  '@lezer/yaml@1.0.3':
     dependencies:
       '@lezer/common': 1.2.1
       '@lezer/highlight': 1.2.0
@@ -3181,12 +3181,12 @@ snapshots:
   '@rollup/rollup-win32-x64-msvc@4.16.0':
     optional: true
 
-  '@tabler/icons-react@3.2.0(react@18.3.1)':
+  '@tabler/icons-react@3.3.0(react@18.3.1)':
     dependencies:
-      '@tabler/icons': 3.2.0
+      '@tabler/icons': 3.3.0
       react: 18.3.1
 
-  '@tabler/icons@3.2.0': {}
+  '@tabler/icons@3.3.0': {}
 
   '@trivago/prettier-plugin-sort-imports@4.3.0(prettier@3.2.5)':
     dependencies:
