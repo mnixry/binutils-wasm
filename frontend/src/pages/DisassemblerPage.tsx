@@ -1,5 +1,4 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
-import * as shlex from "shlex";
 
 import loader from "@binutils-wasm/binutils";
 import {
@@ -41,126 +40,7 @@ import ProcessorBitsSegmentedControl, {
   ProcessorBits,
 } from "../components/ProcessorBitsSegmentedControl";
 import TooltippedCheckbox from "../components/TooltippedCheckbox";
-
-function shlexSplit(str: string) {
-  try {
-    const splitted = shlex.split(str);
-    return splitted.find((e) => /^-*$/.test(e)) ? undefined : splitted;
-  } catch (e) {
-    return undefined;
-  }
-}
-
-const disassemblers: Record<
-  string,
-  {
-    bfdArch: string;
-    acceptEndianness?: Endianness;
-    acceptBits?: ProcessorBits;
-    bfdNameFactory: (props: { e: Endianness; b: ProcessorBits }) => string;
-  }
-> = {
-  i386: {
-    bfdArch: "i386",
-    bfdNameFactory: () => "elf32-i386",
-  },
-  x86_64: {
-    bfdArch: "i386:x86-64",
-    bfdNameFactory: () => "elf64-x86-64",
-  },
-  ARMv7: {
-    bfdArch: "arm",
-    acceptEndianness: "little",
-    bfdNameFactory: ({ e }) => `elf32-${e}arm`,
-  },
-  ARM64: {
-    bfdArch: "aarch64",
-    acceptEndianness: "little",
-    bfdNameFactory: ({ e }) => `elf64-${e}aarch64`,
-  },
-  AVR: {
-    bfdArch: "avr",
-    bfdNameFactory: () => "elf32-avr",
-  },
-  MIPS: {
-    bfdArch: "mips",
-    acceptEndianness: "big",
-    bfdNameFactory: ({ e }) => `elf32-trad${e}mips`,
-  },
-  MIPS64: {
-    bfdArch: "mips",
-    acceptEndianness: "big",
-    bfdNameFactory: ({ e }) => `elf64-trad${e}mips`,
-  },
-  Alpha: {
-    bfdArch: "alpha",
-    bfdNameFactory: () => "elf64-alpha",
-  },
-  CRIS: {
-    bfdArch: "cris",
-    bfdNameFactory: () => "elf32-cris",
-  },
-  IA64: {
-    bfdArch: "ia64",
-    acceptEndianness: "big",
-    bfdNameFactory: ({ e }) => `elf64-ia64-${e}`,
-  },
-  M68k: {
-    bfdArch: "m68k",
-    bfdNameFactory: () => "elf32-m68k",
-  },
-  MSP430: {
-    bfdArch: "msp430",
-    bfdNameFactory: () => "elf32-msp430",
-  },
-  PowerPC: {
-    bfdArch: "powerpc",
-    acceptEndianness: "big",
-    bfdNameFactory: ({ e }) => `elf32-${e}powerpc`,
-  },
-  PowerPC64: {
-    bfdArch: "powerpc",
-    acceptEndianness: "big",
-    bfdNameFactory: ({ e }) => `elf64-${e}powerpc`,
-  },
-  RISC_V: {
-    bfdArch: "riscv",
-    acceptEndianness: "little",
-    acceptBits: 32,
-    bfdNameFactory: ({ e, b }) => `elf${b}-${e}riscv`,
-  },
-  RISC_V64: {
-    bfdArch: "riscv",
-    acceptEndianness: "little",
-    acceptBits: 64,
-    bfdNameFactory: ({ e, b }) => `elf${b}-${e}riscv`,
-  },
-  VAX: {
-    bfdArch: "vax",
-    bfdNameFactory: () => "elf32-vax",
-  },
-  S390: {
-    bfdArch: "s390",
-    acceptBits: 32,
-    bfdNameFactory: ({ b }) => `elf${b}-s390`,
-  },
-  SPARC: {
-    bfdArch: "sparc",
-    bfdNameFactory: () => "elf32-sparc",
-  },
-  SPARC64: {
-    bfdArch: "sparc",
-    bfdNameFactory: () => "elf64-sparc",
-  },
-  LoongArch32: {
-    bfdArch: "LoongArch32",
-    bfdNameFactory: () => "elf32-loongarch",
-  },
-  LoongArch64: {
-    bfdArch: "LoongArch64",
-    bfdNameFactory: () => "elf64-loongarch",
-  },
-};
+import { DISASSEMBLERS_MAP, bufferHexify, shlex } from "../utils";
 
 export default function DisassemblerPage(props: StackProps) {
   const [outerGridRef, outerGridDimensions] = useResizeObserver();
@@ -177,16 +57,10 @@ export default function DisassemblerPage(props: StackProps) {
 
   const [input, setInput] = useState("");
   const [inputBinary, setInputBinary] = useState<Uint8Array>();
-  useEffect(() => {
-    if (!inputBinary || inputBinary.length === 0) return;
-    setInput(
-      [...inputBinary]
-        .map((x) => x.toString(16).padStart(2, "0"))
-        .map((x, i) => (i % 16 === 15 ? `${x}\n` : `${x} `))
-        .join("")
-        .trim(),
-    );
-  }, [inputBinary]);
+  useEffect(
+    () => setInput(inputBinary?.length ? bufferHexify(inputBinary, true) : ""),
+    [inputBinary],
+  );
   const formattedInput = useMemo(() => {
     if (input.length === 0) return;
     //check if non-hex characters are present (excluding whitespace and newline)
@@ -219,9 +93,9 @@ export default function DisassemblerPage(props: StackProps) {
   }, [formattedInput]);
 
   const [architecture, setArchitecture] =
-    useState<keyof typeof disassemblers>("x86_64");
+    useState<keyof typeof DISASSEMBLERS_MAP>("x86_64");
   const architectureInfo = useMemo(
-    () => disassemblers[architecture],
+    () => DISASSEMBLERS_MAP[architecture],
     [architecture],
   );
   useEffect(() => {
@@ -276,12 +150,12 @@ export default function DisassemblerPage(props: StackProps) {
 
   const [objCopyParamString, setObjCopyParamString] = useState("");
   const objCopyParams = useMemo(
-    () => shlexSplit(objCopyParamString),
+    () => shlex.split(objCopyParamString),
     [objCopyParamString],
   );
   const [objDumpParamString, setObjDumpParamString] = useState("");
   const objDumpParams = useMemo(
-    () => shlexSplit(objDumpParamString),
+    () => shlex.split(objDumpParamString),
     [objDumpParamString],
   );
   const [output, setOutput] = useState<ExecutionOutput[]>([]);
@@ -398,11 +272,11 @@ export default function DisassemblerPage(props: StackProps) {
                       stroke={1.5}
                     />
                   }
-                  data={Object.keys(disassemblers)}
+                  data={Object.keys(DISASSEMBLERS_MAP)}
                   value={architecture}
                   onChange={(value) =>
                     value &&
-                    setArchitecture(value as keyof typeof disassemblers)
+                    setArchitecture(value as keyof typeof DISASSEMBLERS_MAP)
                   }
                   size="xs"
                   styles={{

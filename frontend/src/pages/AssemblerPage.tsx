@@ -1,5 +1,4 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
-import * as shlex from "shlex";
 
 import binutilsLoader from "@binutils-wasm/binutils";
 import gasLoader from "@binutils-wasm/gas";
@@ -43,132 +42,20 @@ import ExecutionOutputGroup, {
 import ProcessorBitsSegmentedControl, {
   ProcessorBits,
 } from "../components/ProcessorBitsSegmentedControl";
-
-const publicPrefix = [
-  '.section .shellcode,"awx"',
-  ".global _start",
-  ".global __start",
-  "",
-  "_start:",
-  "__start:",
-];
-
-type SupportedTargets = Parameters<typeof gasLoader>[0];
-
-const assemblers: Record<
-  string,
-  {
-    target: SupportedTargets;
-    acceptBits?: ProcessorBits;
-    acceptEndianness?: Endianness;
-    paramsFactory: (arg: { e: Endianness; b: ProcessorBits }) => string[];
-    asmPrefix?: string[];
-  }
-> = {
-  i386: {
-    target: "i386-linux-gnu",
-    acceptBits: 32,
-    paramsFactory: ({ b }) => [`-${b}`],
-    asmPrefix: [".intel_syntax noprefix", ".p2align 0"],
-  },
-  x86_64: {
-    target: "x86_64-linux-gnu",
-    acceptBits: 64,
-    paramsFactory: ({ b }) => [`-${b}`],
-    asmPrefix: [".intel_syntax noprefix", ".p2align 0"],
-  },
-  ARMv7: {
-    target: "armv7-linux-gnueabihf",
-    acceptEndianness: "little",
-    paramsFactory: ({ e }) => [e === "big" ? "-EB" : "-EL"],
-    asmPrefix: [".syntax unified", ".arch armv7-a", ".arm", ".p2align 2"],
-  },
-  ARM64: {
-    target: "aarch64-linux-gnu",
-    acceptEndianness: "little",
-    paramsFactory: ({ e }) => [e === "big" ? "-EB" : "-EL"],
-  },
-  MIPS: {
-    target: "mips-linux-gnu",
-    acceptEndianness: "big",
-    acceptBits: 32,
-    paramsFactory: ({ e, b }) => [e === "big" ? "-EB" : "-EL", `-${b}`],
-    asmPrefix: [".set mips2", ".set noreorder", ".p2align 2"],
-  },
-  MIPS64: {
-    target: "mips64-linux-gnuabi64",
-    acceptEndianness: "big",
-    acceptBits: 64,
-    paramsFactory: ({ e, b }) => [e === "big" ? "-EB" : "-EL", `-${b}`],
-  },
-  SPARC: {
-    target: "sparc-linux-gnu",
-    acceptEndianness: "big",
-    acceptBits: 32,
-    paramsFactory: ({ e, b }) => [e === "big" ? "-EB" : "-EL", `-${b}`],
-  },
-  SPARC64: {
-    target: "sparc64-linux-gnu",
-    acceptEndianness: "big",
-    acceptBits: 64,
-    paramsFactory: ({ e, b }) => [e === "big" ? "-EB" : "-EL", `-${b}`],
-  },
-  PowerPC: {
-    target: "powerpc-linux-gnu",
-    acceptEndianness: "big",
-    acceptBits: 32,
-    paramsFactory: ({ e, b }) => [
-      e === "big" ? "-mbig" : "-mlittle",
-      `-mppc${b}`,
-    ],
-  },
-  PowerPC64: {
-    target: "powerpc64-linux-gnu",
-    acceptEndianness: "big",
-    acceptBits: 64,
-    paramsFactory: ({ e, b }) => [
-      e === "big" ? "-mbig" : "-mlittle",
-      `-mppc${b}`,
-    ],
-  },
-  IA64: {
-    target: "ia64-linux-gnu",
-    acceptEndianness: "big",
-    paramsFactory: ({ e }) => [e === "big" ? "-mbe" : "-mle"],
-  },
-  RISC_V32: {
-    target: "riscv32-linux-gnu",
-    paramsFactory: () => ["-march=rv32gc", "-mabi=ilp32"],
-  },
-  RISC_V64: {
-    target: "riscv64-linux-gnu",
-    paramsFactory: () => ["-march=rv64gc", "-mabi=lp64"],
-  },
-  LoongArch32: {
-    target: "loongarch32-linux-gnu",
-    paramsFactory: () => [],
-  },
-  LoongArch64: {
-    target: "loongarch64-linux-gnu",
-    paramsFactory: () => [],
-  },
-};
-
-function shlexSplit(str: string) {
-  try {
-    return shlex.split(str);
-  } catch (e) {
-    return undefined;
-  }
-}
+import {
+  ASSEMBLERS_MAP,
+  ASSEMBLE_PUBLIC_PREFIX,
+  bufferHexify,
+  shlex,
+} from "../utils";
 
 export default function AssemblerPage(props: StackProps) {
   const [containerRef, dimensions] = useResizeObserver();
 
   const [architecture, setArchitecture] =
-    useState<keyof typeof assemblers>("x86_64");
+    useState<keyof typeof ASSEMBLERS_MAP>("x86_64");
   const architectureInfo = useMemo(
-    () => assemblers[architecture],
+    () => ASSEMBLERS_MAP[architecture],
     [architecture],
   );
   useEffect(() => {
@@ -177,7 +64,7 @@ export default function AssemblerPage(props: StackProps) {
     if (architectureInfo.acceptBits)
       setProcessorBits(architectureInfo.acceptBits);
     setInput(
-      publicPrefix.join("\n") +
+      ASSEMBLE_PUBLIC_PREFIX.join("\n") +
         "\n\t" +
         (architectureInfo.asmPrefix?.join("\n\t") ?? "") +
         "\n\t",
@@ -196,10 +83,10 @@ export default function AssemblerPage(props: StackProps) {
   }, [architectureInfo, selectedEndianness, selectedProcessorBits]);
 
   const [asParamString, setAsParamString] = useState("");
-  const asParams = useMemo(() => shlexSplit(asParamString), [asParamString]);
+  const asParams = useMemo(() => shlex.split(asParamString), [asParamString]);
   const [objcopyParamString, setObjcopyParamString] = useState("-j .shellcode");
   const objcopyParams = useMemo(
-    () => shlexSplit(objcopyParamString),
+    () => shlex.split(objcopyParamString),
     [objcopyParamString],
   );
 
@@ -207,17 +94,7 @@ export default function AssemblerPage(props: StackProps) {
   const [output, setOutput] = useState<ExecutionOutput[]>([]);
   const [data, setData] = useState<Uint8Array>();
   const hexData = useMemo(
-    () =>
-      data?.length
-        ? [...data]
-            .map(
-              (byte, index) =>
-                byte.toString(16).padStart(2, "0") +
-                ((index + 1) % 16 === 0 ? "\n" : " "),
-            )
-            .join("")
-            .trim()
-        : undefined,
+    () => (data?.length ? bufferHexify(data, true) : undefined),
     [data],
   );
 
@@ -287,9 +164,9 @@ export default function AssemblerPage(props: StackProps) {
                   />
                 }
                 value={architecture}
-                data={Object.keys(assemblers)}
+                data={Object.keys(ASSEMBLERS_MAP)}
                 onChange={(value) =>
-                  value && setArchitecture(value as keyof typeof assemblers)
+                  value && setArchitecture(value as keyof typeof ASSEMBLERS_MAP)
                 }
                 size="xs"
                 styles={{
