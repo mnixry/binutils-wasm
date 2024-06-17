@@ -122,7 +122,7 @@ importers:
         version: 8.1.0(postcss@8.4.38)(typescript@5.4.5)
       tsx:
         specifier: ^4.7.1
-        version: 4.15.5
+        version: 4.15.6
 
 packages:
 
@@ -359,6 +359,9 @@ packages:
 
   '@codemirror/lang-sql@6.6.4':
     resolution: {integrity: sha512-n+FVfKGut+frOvor9dU5pFUalcP614WBNQ9IT1kOUj1t6LFLjWHi2I9DdxXnJuxqFV9jTyYF79coDV3ilSJqCw==}
+
+  '@codemirror/lang-sql@6.6.5':
+    resolution: {integrity: sha512-noy8Hp+4rng6HM0647hvN5hXVefd9o6tar+9p/vV7pj14zsRBaVQvtl6w7cLs1dGPllSsDmnN8R+gAsjnEs6mA==}
 
   '@codemirror/lang-vue@0.1.3':
     resolution: {integrity: sha512-QSKdtYTDRhEHCfo5zOShzxCmqKJvgGrZwDQSdbvCRJ5pRLWBS7pD/8e/tH44aVQT6FKm0t6RVNoSUWHOI5vNug==}
@@ -2036,8 +2039,8 @@ packages:
       typescript:
         optional: true
 
-  tsx@4.15.5:
-    resolution: {integrity: sha512-iKi8jQ2VBmZ2kU/FkGkL2OSHBHsazsUzsdC/W/RwhKIEsIoZ1alCclZHP5jGfNHEaEWUJFM1GquzCf+4db3b0w==}
+  tsx@4.15.6:
+    resolution: {integrity: sha512-is0VQQlfNZRHEuSSTKA6m4xw74IU4AizmuB6lAYLRt9XtuyeQnyJYexhNZOPCB59SqC4JzmSzPnHGBXxf3k0hA==}
     engines: {node: '>=18.0.0'}
     hasBin: true
 
@@ -2576,6 +2579,17 @@ snapshots:
     transitivePeerDependencies:
       - '@codemirror/view'
 
+  '@codemirror/lang-sql@6.6.5(@codemirror/view@6.27.0)':
+    dependencies:
+      '@codemirror/autocomplete': 6.16.2(@codemirror/language@6.10.2)(@codemirror/state@6.4.1)(@codemirror/view@6.27.0)(@lezer/common@1.2.1)
+      '@codemirror/language': 6.10.2
+      '@codemirror/state': 6.4.1
+      '@lezer/common': 1.2.1
+      '@lezer/highlight': 1.2.0
+      '@lezer/lr': 1.4.1
+    transitivePeerDependencies:
+      - '@codemirror/view'
+
   '@codemirror/lang-vue@0.1.3':
     dependencies:
       '@codemirror/lang-html': 6.4.9
@@ -2629,7 +2643,7 @@ snapshots:
       '@codemirror/lang-python': 6.1.6(@codemirror/view@6.27.0)
       '@codemirror/lang-rust': 6.0.1
       '@codemirror/lang-sass': 6.0.2(@codemirror/view@6.27.0)
-      '@codemirror/lang-sql': 6.6.4(@codemirror/view@6.27.0)
+      '@codemirror/lang-sql': 6.6.5(@codemirror/view@6.27.0)
       '@codemirror/lang-vue': 0.1.3
       '@codemirror/lang-wast': 6.0.2
       '@codemirror/lang-xml': 6.1.0
@@ -4255,7 +4269,7 @@ snapshots:
       - supports-color
       - ts-node
 
-  tsx@4.15.5:
+  tsx@4.15.6:
     dependencies:
       esbuild: 0.21.5
       get-tsconfig: 4.7.5
