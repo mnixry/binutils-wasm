@@ -122,7 +122,7 @@ importers:
         version: 8.1.0(postcss@8.4.39)(typescript@5.5.3)
       tsx:
         specifier: ^4.7.1
-        version: 4.15.9
+        version: 4.16.2
 
 packages:
 
@@ -2036,8 +2036,8 @@ packages:
       typescript:
         optional: true
 
-  tsx@4.15.9:
-    resolution: {integrity: sha512-OEw8VSS5Ug88pj3YhOic1Zmg+mKOuJOcBdpxl402C0D4TjRxu/LTIrr+slbc8nKQA+b7YC9SoHTZAEeQQPBwFw==}
+  tsx@4.16.2:
+    resolution: {integrity: sha512-C1uWweJDgdtX2x600HjaFaucXTilT7tgUZHbOE4+ypskZ1OP8CRCSDkCxG6Vya9EwaFIVagWwpaVAn5wzypaqQ==}
     engines: {node: '>=18.0.0'}
     hasBin: true
 
@@ -4264,7 +4264,7 @@ snapshots:
       - supports-color
       - ts-node
 
-  tsx@4.15.9:
+  tsx@4.16.2:
     dependencies:
       esbuild: 0.21.5
       get-tsconfig: 4.7.5
