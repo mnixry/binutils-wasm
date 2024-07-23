@@ -95,7 +95,7 @@ importers:
         version: 8.4.39
       postcss-preset-mantine:
         specifier: ^1.13.0
-        version: 1.15.0(postcss@8.4.39)
+        version: 1.17.0(postcss@8.4.39)
       postcss-simple-vars:
         specifier: ^7.0.1
         version: 7.0.1(postcss@8.4.39)
@@ -1711,8 +1711,8 @@ packages:
     resolution: {integrity: sha512-8q7VEgMJW4J8tcfVPy8g09NcQwZdbwFEqhe/WZkoIzjn/3TGDwtOCYtXGxA3O8tPzpczCCDgv+P2P5y00ZJOOg==}
     engines: {node: '>= 8'}
 
-  micromatch@4.0.5:
-    resolution: {integrity: sha512-DMy+ERcEW2q8Z2Po+WNXuw3c5YaUSFjAO5GsJqfEl7UjvtIuFKO6ZrKvcItdy98dwFI2N1tg3zNIdKaQT+aNdA==}
+  micromatch@4.0.7:
+    resolution: {integrity: sha512-LPP/3KorzCwBxfeUuZmaR6bG2kdeHSbe0P2tY3FLRU4vYrjYz5hI4QZwV0njUx3jeuKe67YukQ1LSPZBKDqO/Q==}
     engines: {node: '>=8.6'}
 
   mimic-fn@2.1.0:
@@ -1830,19 +1830,19 @@ packages:
     peerDependencies:
       postcss: ^8.2.14
 
-  postcss-nested@6.0.1:
-    resolution: {integrity: sha512-mEp4xPMi5bSWiMbsgoPfcP74lsWLHkQbZc3sY+jWYd65CUwXrUaTp0fmNpa01ZcETKlIgUdFN/MpS2xZtqL9dQ==}
+  postcss-nested@6.2.0:
+    resolution: {integrity: sha512-HQbt28KulC5AJzG+cZtj9kvKB93CFCdLvog1WFLf1D+xmMvPGlBstkpTEZfK5+AN9hfJocyBFCNiqyS48bpgzQ==}
     engines: {node: '>=12.0'}
     peerDependencies:
       postcss: ^8.2.14
 
-  postcss-preset-mantine@1.15.0:
-    resolution: {integrity: sha512-OKPs6uoORSXlU/GFH1ZtFaslecHBPwuoSikdL5W3WKJm4ZPAQM0mw9x9m3toa/Mo1JhoBmYMM28i+zEdav5Edg==}
+  postcss-preset-mantine@1.17.0:
+    resolution: {integrity: sha512-ji1PMDBUf2Vsx/HE5faMSs1+ff6qE6YRulTr4Ja+6HD3gop8rSMTCYdpN7KrdsEg079kfBKkO/PaKhG9uR0zwQ==}
     peerDependencies:
       postcss: '>=8.0.0'
 
-  postcss-selector-parser@6.0.16:
-    resolution: {integrity: sha512-A0RVJrX+IUkVZbW3ClroRWurercFhieevHB38sr2+l9eUClMqome3LmEmnhlNy+5Mr2EYN6B2Kaw9wYdd+VHiw==}
+  postcss-selector-parser@6.1.1:
+    resolution: {integrity: sha512-b4dlw/9V8A71rLIDsSwVmak9z2DuBUB7CA1/wSdelNEzqsjoSPeADTWNO09lpH49Diy3/JIZ2bSPB1dI3LJCHg==}
     engines: {node: '>=4'}
 
   postcss-simple-vars@7.0.1:
@@ -3829,7 +3829,7 @@ snapshots:
       '@nodelib/fs.walk': 1.2.8
       glob-parent: 5.1.2
       merge2: 1.4.1
-      micromatch: 4.0.5
+      micromatch: 4.0.7
 
   fast-json-stable-stringify@2.1.0: {}
 
@@ -4012,7 +4012,7 @@ snapshots:
 
   merge2@1.4.1: {}
 
-  micromatch@4.0.5:
+  micromatch@4.0.7:
     dependencies:
       braces: 3.0.3
       picomatch: 2.3.1
@@ -4113,18 +4113,18 @@ snapshots:
       postcss-simple-vars: 7.0.1(postcss@8.4.39)
       sugarss: 4.0.1(postcss@8.4.39)
 
-  postcss-nested@6.0.1(postcss@8.4.39):
+  postcss-nested@6.2.0(postcss@8.4.39):
     dependencies:
       postcss: 8.4.39
-      postcss-selector-parser: 6.0.16
+      postcss-selector-parser: 6.1.1
 
-  postcss-preset-mantine@1.15.0(postcss@8.4.39):
+  postcss-preset-mantine@1.17.0(postcss@8.4.39):
     dependencies:
       postcss: 8.4.39
       postcss-mixins: 9.0.4(postcss@8.4.39)
-      postcss-nested: 6.0.1(postcss@8.4.39)
+      postcss-nested: 6.2.0(postcss@8.4.39)
 
-  postcss-selector-parser@6.0.16:
+  postcss-selector-parser@6.1.1:
     dependencies:
       cssesc: 3.0.0
       util-deprecate: 1.0.2
