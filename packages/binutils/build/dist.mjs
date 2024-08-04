@@ -16,7 +16,7 @@ function main() {
     "buildx",
     "build",
     "--progress=plain",
-    "--build-arg=BRANCH=binutils-2_42-branch",
+    "--build-arg=BRANCH=binutils-2_43-branch",
     `--output=${process.cwd()}/build`,
     ...extraArgs,
     `${process.cwd()}/build`,
