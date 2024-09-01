@@ -80,7 +80,7 @@ importers:
         version: 8.3.0(eslint@9.9.1)(typescript@5.5.4)
       '@vitejs/plugin-react':
         specifier: ^4.3.1
-        version: 4.3.1(vite@5.4.2(@types/node@20.16.3)(sugarss@4.0.1(postcss@8.4.42)))
+        version: 4.3.1(vite@5.4.2(@types/node@20.16.3)(sugarss@4.0.1(postcss@8.4.43)))
       eslint:
         specifier: ^9.8.0
         version: 9.9.1
@@ -92,13 +92,13 @@ importers:
         version: 0.4.11(eslint@9.9.1)
       postcss:
         specifier: ^8.4.41
-        version: 8.4.42
+        version: 8.4.43
       postcss-preset-mantine:
         specifier: ^1.17.0
-        version: 1.17.0(postcss@8.4.42)
+        version: 1.17.0(postcss@8.4.43)
       postcss-simple-vars:
         specifier: ^7.0.1
-        version: 7.0.1(postcss@8.4.42)
+        version: 7.0.1(postcss@8.4.43)
       prettier:
         specifier: ^3.3.3
         version: 3.3.3
@@ -107,19 +107,19 @@ importers:
         version: 5.5.4
       vite:
         specifier: ^5.3.5
-        version: 5.4.2(@types/node@20.16.3)(sugarss@4.0.1(postcss@8.4.42))
+        version: 5.4.2(@types/node@20.16.3)(sugarss@4.0.1(postcss@8.4.43))
 
   packages/binutils:
     devDependencies:
       tsup:
         specifier: ^8.2.4
-        version: 8.2.4(postcss@8.4.42)(tsx@4.19.0)(typescript@5.5.4)(yaml@2.4.3)
+        version: 8.2.4(postcss@8.4.43)(tsx@4.19.0)(typescript@5.5.4)(yaml@2.4.3)
 
   packages/gas:
     devDependencies:
       tsup:
         specifier: ^8.2.4
-        version: 8.2.4(postcss@8.4.42)(tsx@4.19.0)(typescript@5.5.4)(yaml@2.4.3)
+        version: 8.2.4(postcss@8.4.43)(tsx@4.19.0)(typescript@5.5.4)(yaml@2.4.3)
       tsx:
         specifier: ^4.16.5
         version: 4.19.0
@@ -1974,8 +1974,8 @@ packages:
     peerDependencies:
       postcss: ^8.2.1
 
-  postcss@8.4.42:
-    resolution: {integrity: sha512-hywKUQB9Ra4dR1mGhldy5Aj1X3MWDSIA1cEi+Uy0CjheLvP6Ual5RlwMCh8i/X121yEDLDIKBsrCQ8ba3FDMfQ==}
+  postcss@8.4.43:
+    resolution: {integrity: sha512-gJAQVYbh5R3gYm33FijzCZj7CHyQ3hWMgJMprLUlIYqCwTeZhBQ19wp0e9mA25BUbEvY5+EXuuaAjqQsrBxQBQ==}
     engines: {node: ^10 || ^12 || >=14}
 
   prelude-ls@1.2.1:
@@ -3646,14 +3646,14 @@ snapshots:
     optionalDependencies:
       react: 18.3.1
 
-  '@vitejs/plugin-react@4.3.1(vite@5.4.2(@types/node@20.16.3)(sugarss@4.0.1(postcss@8.4.42)))':
+  '@vitejs/plugin-react@4.3.1(vite@5.4.2(@types/node@20.16.3)(sugarss@4.0.1(postcss@8.4.43)))':
     dependencies:
       '@babel/core': 7.25.2
       '@babel/plugin-transform-react-jsx-self': 7.24.7(@babel/core@7.25.2)
       '@babel/plugin-transform-react-jsx-source': 7.24.7(@babel/core@7.25.2)
       '@types/babel__core': 7.20.5
       react-refresh: 0.14.2
-      vite: 5.4.2(@types/node@20.16.3)(sugarss@4.0.1(postcss@8.4.42))
+      vite: 5.4.2(@types/node@20.16.3)(sugarss@4.0.1(postcss@8.4.43))
     transitivePeerDependencies:
       - supports-color
 
@@ -4274,48 +4274,48 @@ snapshots:
 
   pirates@4.0.6: {}
 
-  postcss-js@4.0.1(postcss@8.4.42):
+  postcss-js@4.0.1(postcss@8.4.43):
     dependencies:
       camelcase-css: 2.0.1
-      postcss: 8.4.42
+      postcss: 8.4.43
 
-  postcss-load-config@6.0.1(postcss@8.4.42)(tsx@4.19.0)(yaml@2.4.3):
+  postcss-load-config@6.0.1(postcss@8.4.43)(tsx@4.19.0)(yaml@2.4.3):
     dependencies:
       lilconfig: 3.1.2
     optionalDependencies:
-      postcss: 8.4.42
+      postcss: 8.4.43
       tsx: 4.19.0
       yaml: 2.4.3
 
-  postcss-mixins@9.0.4(postcss@8.4.42):
+  postcss-mixins@9.0.4(postcss@8.4.43):
     dependencies:
       fast-glob: 3.3.2
-      postcss: 8.4.42
-      postcss-js: 4.0.1(postcss@8.4.42)
-      postcss-simple-vars: 7.0.1(postcss@8.4.42)
-      sugarss: 4.0.1(postcss@8.4.42)
+      postcss: 8.4.43
+      postcss-js: 4.0.1(postcss@8.4.43)
+      postcss-simple-vars: 7.0.1(postcss@8.4.43)
+      sugarss: 4.0.1(postcss@8.4.43)
 
-  postcss-nested@6.2.0(postcss@8.4.42):
+  postcss-nested@6.2.0(postcss@8.4.43):
     dependencies:
-      postcss: 8.4.42
+      postcss: 8.4.43
       postcss-selector-parser: 6.1.1
 
-  postcss-preset-mantine@1.17.0(postcss@8.4.42):
+  postcss-preset-mantine@1.17.0(postcss@8.4.43):
     dependencies:
-      postcss: 8.4.42
-      postcss-mixins: 9.0.4(postcss@8.4.42)
-      postcss-nested: 6.2.0(postcss@8.4.42)
+      postcss: 8.4.43
+      postcss-mixins: 9.0.4(postcss@8.4.43)
+      postcss-nested: 6.2.0(postcss@8.4.43)
 
   postcss-selector-parser@6.1.1:
     dependencies:
       cssesc: 3.0.0
       util-deprecate: 1.0.2
 
-  postcss-simple-vars@7.0.1(postcss@8.4.42):
+  postcss-simple-vars@7.0.1(postcss@8.4.43):
     dependencies:
-      postcss: 8.4.42
+      postcss: 8.4.43
 
-  postcss@8.4.42:
+  postcss@8.4.43:
     dependencies:
       nanoid: 3.3.7
       picocolors: 1.0.1
@@ -4511,9 +4511,9 @@ snapshots:
       pirates: 4.0.6
       ts-interface-checker: 0.1.13
 
-  sugarss@4.0.1(postcss@8.4.42):
+  sugarss@4.0.1(postcss@8.4.43):
     dependencies:
-      postcss: 8.4.42
+      postcss: 8.4.43
 
   supports-color@5.5.0:
     dependencies:
@@ -4555,7 +4555,7 @@ snapshots:
 
   tslib@2.7.0: {}
 
-  tsup@8.2.4(postcss@8.4.42)(tsx@4.19.0)(typescript@5.5.4)(yaml@2.4.3):
+  tsup@8.2.4(postcss@8.4.43)(tsx@4.19.0)(typescript@5.5.4)(yaml@2.4.3):
     dependencies:
       bundle-require: 5.0.0(esbuild@0.23.0)
       cac: 6.7.14
@@ -4567,14 +4567,14 @@ snapshots:
       globby: 11.1.0
       joycon: 3.1.1
       picocolors: 1.0.1
-      postcss-load-config: 6.0.1(postcss@8.4.42)(tsx@4.19.0)(yaml@2.4.3)
+      postcss-load-config: 6.0.1(postcss@8.4.43)(tsx@4.19.0)(yaml@2.4.3)
       resolve-from: 5.0.0
       rollup: 4.20.0
       source-map: 0.8.0-beta.0
       sucrase: 3.35.0
       tree-kill: 1.2.2
     optionalDependencies:
-      postcss: 8.4.42
+      postcss: 8.4.43
       typescript: 5.5.4
     transitivePeerDependencies:
       - jiti
@@ -4643,15 +4643,15 @@ snapshots:
 
   util-deprecate@1.0.2: {}
 
-  vite@5.4.2(@types/node@20.16.3)(sugarss@4.0.1(postcss@8.4.42)):
+  vite@5.4.2(@types/node@20.16.3)(sugarss@4.0.1(postcss@8.4.43)):
     dependencies:
       esbuild: 0.21.5
-      postcss: 8.4.42
+      postcss: 8.4.43
       rollup: 4.21.0
     optionalDependencies:
       '@types/node': 20.16.3
       fsevents: 2.3.3
-      sugarss: 4.0.1(postcss@8.4.42)
+      sugarss: 4.0.1(postcss@8.4.43)
 
   w3c-keyname@2.2.8: {}
 
