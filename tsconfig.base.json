@@ -6,7 +6,6 @@
   "compilerOptions": {
     "resolveJsonModule": true,
     "moduleResolution": "Bundler",
-    "module": "ES2020",
-    "verbatimModuleSyntax": true
+    "module": "ES2020"
   }
 }
