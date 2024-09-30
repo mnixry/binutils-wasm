@@ -31,10 +31,10 @@ importers:
         version: link:../packages/gas
       '@mantine/core':
         specifier: ^7.13.0
-        version: 7.13.0(@mantine/hooks@7.13.0(react@18.3.1))(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        version: 7.13.1(@mantine/hooks@7.13.1(react@18.3.1))(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@mantine/hooks':
         specifier: ^7.13.0
-        version: 7.13.0(react@18.3.1)
+        version: 7.13.1(react@18.3.1)
       '@replit/codemirror-vscode-keymap':
         specifier: ^6.0.2
         version: 6.0.2(@codemirror/autocomplete@6.18.1(@codemirror/language@6.10.3)(@codemirror/state@6.4.1)(@codemirror/view@6.34.0)(@lezer/common@1.2.1))(@codemirror/commands@6.6.2)(@codemirror/language@6.10.3)(@codemirror/lint@6.8.2)(@codemirror/search@6.5.6)(@codemirror/state@6.4.1)(@codemirror/view@6.34.0)
@@ -771,15 +771,15 @@ packages:
   '@lezer/yaml@1.0.3':
     resolution: {integrity: sha512-GuBLekbw9jDBDhGur82nuwkxKQ+a3W5H0GfaAthDXcAu+XdpS43VlnxA9E9hllkpSP5ellRDKjLLj7Lu9Wr6xA==}
 
-  '@mantine/core@7.13.0':
-    resolution: {integrity: sha512-aQpx3Q69ATDhVopBNkWS0sql93ZaPqeA5jTgqU7GxZvJdkpG87vbKYgp4cDV/gqr7BYu4kel0smeHYuPemiZ8Q==}
+  '@mantine/core@7.13.1':
+    resolution: {integrity: sha512-KH/WrcY/5pf3FxUUbtG77xyd7kfp6SRPAJFkxjFlg9kXroiQ7baljphY371CwPYPINERShUdvCQLpz4r4WMIHA==}
     peerDependencies:
-      '@mantine/hooks': 7.13.0
+      '@mantine/hooks': 7.13.1
       react: ^18.2.0
       react-dom: ^18.2.0
 
-  '@mantine/hooks@7.13.0':
-    resolution: {integrity: sha512-oQpwSi0gajH3UR1DFa9MQ+zeYy75xbc8Im9jIIepLbiJXtIcPK+yll1BMxNwPQLYU1pYI6ZgUazI2PoykVNmsg==}
+  '@mantine/hooks@7.13.1':
+    resolution: {integrity: sha512-Hfd4v380pPJUKDbARk+egdAanx7bpGZmaOn8G3QBZjwDufVopxip0WPkifUKUIMeYY1CTboa+1go9l56ZWrrSg==}
     peerDependencies:
       react: ^18.2.0
 
@@ -2942,10 +2942,10 @@ snapshots:
       '@lezer/highlight': 1.2.1
       '@lezer/lr': 1.4.2
 
-  '@mantine/core@7.13.0(@mantine/hooks@7.13.0(react@18.3.1))(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@mantine/core@7.13.1(@mantine/hooks@7.13.1(react@18.3.1))(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@floating-ui/react': 0.26.24(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@mantine/hooks': 7.13.0(react@18.3.1)
+      '@mantine/hooks': 7.13.1(react@18.3.1)
       clsx: 2.1.1
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
@@ -2956,7 +2956,7 @@ snapshots:
     transitivePeerDependencies:
       - '@types/react'
 
-  '@mantine/hooks@7.13.0(react@18.3.1)':
+  '@mantine/hooks@7.13.1(react@18.3.1)':
     dependencies:
       react: 18.3.1
 
