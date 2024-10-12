@@ -1,4 +1,4 @@
-FROM emscripten/emsdk:3.1.68 AS builder
+FROM emscripten/emsdk:3.1.69 AS builder
 
 RUN apt-get update && \
     apt-get install -y git bison flex texinfo --no-install-recommends && \
