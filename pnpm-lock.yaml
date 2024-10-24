@@ -40,7 +40,7 @@ importers:
         version: 6.0.2(@codemirror/autocomplete@6.18.1(@codemirror/language@6.10.3)(@codemirror/state@6.4.1)(@codemirror/view@6.34.1)(@lezer/common@1.2.2))(@codemirror/commands@6.6.2)(@codemirror/language@6.10.3)(@codemirror/lint@6.8.2)(@codemirror/search@6.5.6)(@codemirror/state@6.4.1)(@codemirror/view@6.34.1)
       '@tabler/icons-react':
         specifier: ^3.18.0
-        version: 3.19.0(react@18.3.1)
+        version: 3.20.0(react@18.3.1)
       '@uiw/codemirror-extensions-langs':
         specifier: ^4.23.3
         version: 4.23.5(@codemirror/autocomplete@6.18.1(@codemirror/language@6.10.3)(@codemirror/state@6.4.1)(@codemirror/view@6.34.1)(@lezer/common@1.2.2))(@codemirror/language-data@6.5.0(@codemirror/view@6.34.1))(@codemirror/language@6.10.3)(@codemirror/legacy-modes@6.4.0)(@codemirror/state@6.4.1)(@codemirror/view@6.34.1)(@lezer/common@1.2.2)(@lezer/highlight@1.2.1)(@lezer/javascript@1.4.18)(@lezer/lr@1.4.2)
@@ -1056,13 +1056,13 @@ packages:
     cpu: [x64]
     os: [win32]
 
-  '@tabler/icons-react@3.19.0':
-    resolution: {integrity: sha512-AqEWGI0tQWgqo6ZjMO5yJ9sYT8oXLuAM/up0hN9iENS6IdtNZryKrkNSiMgpwweNTpl8wFFG/dAZ959S91A/uQ==}
+  '@tabler/icons-react@3.20.0':
+    resolution: {integrity: sha512-a47oaL48bb5Cx/WUVfg/NZrsWwFExrcDQO8thUZ7S6h/OQYFu7sm4E5pZsmUtGCjikB3lRzjtmMD+C4s7mr9yw==}
     peerDependencies:
       react: '>= 16'
 
-  '@tabler/icons@3.19.0':
-    resolution: {integrity: sha512-A4WEWqpdbTfnpFEtwXqwAe9qf9sp1yRPvzppqAuwcoF0q5YInqB+JkJtSFToCyBpPVeLxJUxxkapLvt2qQgnag==}
+  '@tabler/icons@3.20.0':
+    resolution: {integrity: sha512-nXSeUzsCOxX/Of+kdUVQfxL9bG+ck8XCWNf9dGSpE+nhVexRwk/4HiDQDxFDysfT7vfgSut6GXnrZsU5M5dSlA==}
 
   '@trivago/prettier-plugin-sort-imports@4.3.0':
     resolution: {integrity: sha512-r3n0onD3BTOVUNPhR4lhVK4/pABGpbA7bW3eumZnYdKaHkf1qEC+Mag6DPbGNuuh0eG8AaYj+YqmVHSiGslaTQ==}
@@ -3292,12 +3292,12 @@ snapshots:
   '@rollup/rollup-win32-x64-msvc@4.24.0':
     optional: true
 
-  '@tabler/icons-react@3.19.0(react@18.3.1)':
+  '@tabler/icons-react@3.20.0(react@18.3.1)':
     dependencies:
-      '@tabler/icons': 3.19.0
+      '@tabler/icons': 3.20.0
       react: 18.3.1
 
-  '@tabler/icons@3.19.0': {}
+  '@tabler/icons@3.20.0': {}
 
   '@trivago/prettier-plugin-sort-imports@4.3.0(prettier@3.3.3)':
     dependencies:
