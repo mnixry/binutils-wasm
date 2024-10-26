@@ -113,13 +113,13 @@ importers:
     devDependencies:
       tsup:
         specifier: ^8.3.0
-        version: 8.3.4(postcss@8.4.47)(tsx@4.19.1)(typescript@5.6.3)(yaml@2.4.3)
+        version: 8.3.5(postcss@8.4.47)(tsx@4.19.1)(typescript@5.6.3)(yaml@2.4.3)
 
   packages/gas:
     devDependencies:
       tsup:
         specifier: ^8.3.0
-        version: 8.3.4(postcss@8.4.47)(tsx@4.19.1)(typescript@5.6.3)(yaml@2.4.3)
+        version: 8.3.5(postcss@8.4.47)(tsx@4.19.1)(typescript@5.6.3)(yaml@2.4.3)
       tsx:
         specifier: ^4.19.1
         version: 4.19.1
@@ -2129,8 +2129,8 @@ packages:
   tslib@2.8.0:
     resolution: {integrity: sha512-jWVzBLplnCmoaTr13V9dYbiQ99wvZRd0vNWaDRg+aVYRcjDF3nDksxFDE/+fkXnKhpnUUkmx5pK/v8mCtLVqZA==}
 
-  tsup@8.3.4:
-    resolution: {integrity: sha512-0uCsxLADTFwGsEfSMx5fBFtXNw1mZJBAU6ZJe6xMeGfLT6o/12JDigvBIrQJEZlK01YBsocRxU3i+YY6QduShQ==}
+  tsup@8.3.5:
+    resolution: {integrity: sha512-Tunf6r6m6tnZsG9GYWndg0z8dEV7fD733VBFzFJ5Vcm1FtlXB8xBD/rtrBi2a3YKEV7hHtxiZtW5EAVADoe1pA==}
     engines: {node: '>=18'}
     hasBin: true
     peerDependencies:
@@ -2303,7 +2303,7 @@ snapshots:
   '@babel/code-frame@7.24.7':
     dependencies:
       '@babel/highlight': 7.24.7
-      picocolors: 1.1.0
+      picocolors: 1.1.1
 
   '@babel/code-frame@7.25.7':
     dependencies:
@@ -2423,7 +2423,7 @@ snapshots:
       '@babel/helper-validator-identifier': 7.25.7
       chalk: 2.4.2
       js-tokens: 4.0.0
-      picocolors: 1.1.0
+      picocolors: 1.1.1
 
   '@babel/highlight@7.25.7':
     dependencies:
@@ -4381,7 +4381,7 @@ snapshots:
 
   tslib@2.8.0: {}
 
-  tsup@8.3.4(postcss@8.4.47)(tsx@4.19.1)(typescript@5.6.3)(yaml@2.4.3):
+  tsup@8.3.5(postcss@8.4.47)(tsx@4.19.1)(typescript@5.6.3)(yaml@2.4.3):
     dependencies:
       bundle-require: 5.0.0(esbuild@0.24.0)
       cac: 6.7.14
