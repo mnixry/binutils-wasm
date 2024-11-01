@@ -9,8 +9,8 @@ importers:
   .:
     devDependencies:
       '@tsconfig/node-lts':
-        specifier: ^20.1.3
-        version: 20.1.3
+        specifier: ^22.0.0
+        version: 22.0.0
       '@tsconfig/strictest':
         specifier: ^2.0.5
         version: 2.0.5
@@ -1147,8 +1147,8 @@ packages:
       '@vue/compiler-sfc':
         optional: true
 
-  '@tsconfig/node-lts@20.1.3':
-    resolution: {integrity: sha512-m3b7EP2U+h5tNSpaBMfcTuHmHn04wrgRPQQrfKt75YIPq6kPs2153/KfPHdqkEWGx5pEBvS6rnvToT+yTtC1iw==}
+  '@tsconfig/node-lts@22.0.0':
+    resolution: {integrity: sha512-6y6CBFe0etz2xU1s0rGOj7pLsvbYXM9l/RNmBQOKI3S5DFrp1jigxx8uYupG5O6cCNXNlOE/1gquoQH01+kz5w==}
 
   '@tsconfig/strictest@2.0.5':
     resolution: {integrity: sha512-ec4tjL2Rr0pkZ5hww65c+EEPYwxOi4Ryv+0MtjeaSQRJyq322Q27eOQiFbuNgw2hpL4hB1/W/HBGk3VKS43osg==}
@@ -3362,7 +3362,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@tsconfig/node-lts@20.1.3': {}
+  '@tsconfig/node-lts@22.0.0': {}
 
   '@tsconfig/strictest@2.0.5': {}
 
