@@ -89,7 +89,7 @@ importers:
         version: 5.1.0(eslint@9.17.0)
       eslint-plugin-react-refresh:
         specifier: ^0.4.12
-        version: 0.4.15(eslint@9.17.0)
+        version: 0.4.16(eslint@9.17.0)
       postcss:
         specifier: ^8.4.47
         version: 8.4.49
@@ -1380,8 +1380,8 @@ packages:
     peerDependencies:
       eslint: ^3.0.0 || ^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0-0 || ^9.0.0
 
-  eslint-plugin-react-refresh@0.4.15:
-    resolution: {integrity: sha512-poU5qfmwLS5WO69drZnB9J1vXv+NQkE0p+oIY4B85Z9IuvpaIdHa+9IE/sFrN79QW49QcHQIP6c7NHpDMQ9TvA==}
+  eslint-plugin-react-refresh@0.4.16:
+    resolution: {integrity: sha512-slterMlxAhov/DZO8NScf6mEeMBBXodFUolijDvrtTxyezyLoTQaa73FyYus/VbTdftd8wBgBxPMRk3poleXNQ==}
     peerDependencies:
       eslint: '>=8.40'
 
@@ -3555,7 +3555,7 @@ snapshots:
     dependencies:
       eslint: 9.17.0
 
-  eslint-plugin-react-refresh@0.4.15(eslint@9.17.0):
+  eslint-plugin-react-refresh@0.4.16(eslint@9.17.0):
     dependencies:
       eslint: 9.17.0
 
