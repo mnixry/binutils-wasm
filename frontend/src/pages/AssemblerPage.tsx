@@ -121,8 +121,18 @@ export default function AssemblerPage(props: StackProps) {
       printErr: (str) =>
         output.push({ program: "gnu-as", line: str, fd: "stderr" }),
       arguments: [...asParams, "-o", "/tmp/a.out", "/tmp/a.s"],
-      preRun: [(m) => m.FS.writeFile("/tmp/a.s", inputData)],
-      postRun: [(m) => (elf = m.FS.readFile("/tmp/a.out"))],
+      preRun: [
+        (m) => {
+          m.FS.writeFile("/tmp/a.s", inputData);
+        },
+      ],
+      postRun: [
+        (m) => {
+          try {
+            elf = m.FS.readFile("/tmp/a.out");
+          } catch (e) {}
+        },
+      ],
     });
 
     if (!elf) {
@@ -145,7 +155,21 @@ export default function AssemblerPage(props: StackProps) {
   useEffect(() => {
     startLoading();
     assemble()
-      .catch((e) => setOutput([{ program: "internal", line: e, fd: "stderr" }]))
+      .catch((e) => {
+        console.error(e);
+        setOutput([
+          {
+            program: "internal",
+            line:
+              typeof e === "string"
+                ? e
+                : e instanceof Error
+                  ? String(e)
+                  : JSON.stringify(e),
+            fd: "stderr",
+          },
+        ]);
+      })
       .finally(stopLoading);
   }, [assemble, startLoading, stopLoading]);
 
