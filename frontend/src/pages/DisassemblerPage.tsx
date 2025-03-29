@@ -79,7 +79,9 @@ export default function DisassemblerPage(props: StackProps) {
     if (formattedInput !== undefined) {
       setOutput([]);
       setInputBinary(
-        new Uint8Array(formattedInput.split(/\s/g).map((x) => parseInt(x, 16))),
+        new Uint8Array(
+          formattedInput.split(/\s/g).map((x) => Number.parseInt(x, 16)),
+        ),
       );
     } else {
       setOutput([
@@ -121,7 +123,7 @@ export default function DisassemblerPage(props: StackProps) {
       b: selectedProcessorBits,
     });
 
-    const objDumpArgs = ["-w", "-d", `--adjust-vma=0`, "-b", bfdName];
+    const objDumpArgs = ["-w", "-d", "--adjust-vma=0", "-b", bfdName];
     if (!showByte) objDumpArgs.push("--no-show-raw-insn");
     if (showIntelSyntax) objDumpArgs.push("-M", "intel");
     setObjDumpParamString(shlex.join(objDumpArgs));
@@ -166,13 +168,14 @@ export default function DisassemblerPage(props: StackProps) {
   const disassemble = useCallback(async () => {
     if (!objDumpParams || !objCopyParams || !inputBinary?.length) return;
 
-    const objdump = await loader("objdump"),
-      objcopy = await loader("objcopy");
+    const objdump = await loader("objdump");
+    const objcopy = await loader("objcopy");
 
     const output = [] as ExecutionOutput[];
-    const logErr = (line: string) => (
-      output.push({ fd: "stderr", program: "internal", line }), output
-    );
+    const logErr = (line: string) => {
+      output.push({ fd: "stderr", program: "internal", line });
+      return output;
+    };
 
     let copiedBinary = undefined as Uint8Array | undefined;
     await objcopy({
@@ -181,14 +184,24 @@ export default function DisassemblerPage(props: StackProps) {
       printErr: (line) =>
         output.push({ fd: "stderr", program: "objcopy", line }),
       preRun: [(m) => m.FS.writeFile("/tmp/a.out", inputBinary)],
-      postRun: [(m) => (copiedBinary = m.FS.readFile("/tmp/a.bin"))],
+      postRun: [
+        (m) => {
+          try {
+            copiedBinary = m.FS.readFile("/tmp/a.bin");
+          } catch (e) {
+            return logErr(
+              `objcopy failed to copy the binary: ${JSON.stringify(e)}`,
+            );
+          }
+        },
+      ],
     });
     if (!copiedBinary) return logErr("objcopy failed to copy the binary.");
 
     let dumpStdout = "";
     await objdump({
       arguments: [...objDumpParams, "/tmp/a.out"],
-      print: (line) => (dumpStdout += line + "\n"),
+      print: (line) => (dumpStdout += `${line}\n`),
       printErr: (line) =>
         output.push({ fd: "stderr", program: "objdump", line }),
       preRun: [(m) => m.FS.writeFile("/tmp/a.out", copiedBinary!)],
