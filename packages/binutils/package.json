@@ -24,6 +24,6 @@
   "author": "Mix <32300164+mnixry@users.noreply.github.com>",
   "license": "GPL-3.0-or-later",
   "devDependencies": {
-    "tsup": "^8.3.0"
+    "tsup": "^8.4.0"
   }
 }
