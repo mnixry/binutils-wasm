@@ -16,7 +16,7 @@ importers:
         version: 2.0.5
       '@types/node':
         specifier: ^22.13.14
-        version: 22.15.2
+        version: 22.15.3
       typescript:
         specifier: ^5.8.2
         version: 5.8.3
@@ -80,7 +80,7 @@ importers:
         version: 8.31.0(eslint@9.25.1)(typescript@5.8.3)
       '@vitejs/plugin-react':
         specifier: ^4.3.4
-        version: 4.4.1(vite@6.3.3(@types/node@22.15.2)(sugarss@4.0.1(postcss@8.5.3))(tsx@4.19.3))
+        version: 4.4.1(vite@6.3.3(@types/node@22.15.3)(sugarss@4.0.1(postcss@8.5.3))(tsx@4.19.3))
       eslint:
         specifier: ^9.23.0
         version: 9.25.1
@@ -107,7 +107,7 @@ importers:
         version: 5.8.3
       vite:
         specifier: ^6.2.3
-        version: 6.3.3(@types/node@22.15.2)(sugarss@4.0.1(postcss@8.5.3))(tsx@4.19.3)
+        version: 6.3.3(@types/node@22.15.3)(sugarss@4.0.1(postcss@8.5.3))(tsx@4.19.3)
 
   packages/binutils:
     devDependencies:
@@ -1014,8 +1014,8 @@ packages:
   '@types/json-schema@7.0.15':
     resolution: {integrity: sha512-5+fP8P8MFNC+AyZCDxrB2pkZFPGzqQWUzpSeuuVLvm8VMcorNYavBqoFcxK8bQz4Qsbn4oUEEem4wDLfcysGHA==}
 
-  '@types/node@22.15.2':
-    resolution: {integrity: sha512-uKXqKN9beGoMdBfcaTY1ecwz6ctxuJAcUlwE55938g0ZJ8lRxwAZqRz2AJ4pzpt5dHdTPMB863UZ0ESiFUcP7A==}
+  '@types/node@22.15.3':
+    resolution: {integrity: sha512-lX7HFZeHf4QG/J7tBZqrCAXwz9J5RD56Y6MpP0eJkka8p+K0RY/yBTW7CYFJ4VGCclxqOLKmiGP5juQc6MKgcw==}
 
   '@types/react-dom@19.1.2':
     resolution: {integrity: sha512-XGJkWF41Qq305SKWEILa1O8vzhb3aOo3ogBlSmiqNko/WmRb6QIaweuZCXjKygVDXpzXb5wyxKTSOsmkuqj+Qw==}
@@ -3056,7 +3056,7 @@ snapshots:
 
   '@types/json-schema@7.0.15': {}
 
-  '@types/node@22.15.2':
+  '@types/node@22.15.3':
     dependencies:
       undici-types: 6.21.0
 
@@ -3229,14 +3229,14 @@ snapshots:
     optionalDependencies:
       react: 19.1.0
 
-  '@vitejs/plugin-react@4.4.1(vite@6.3.3(@types/node@22.15.2)(sugarss@4.0.1(postcss@8.5.3))(tsx@4.19.3))':
+  '@vitejs/plugin-react@4.4.1(vite@6.3.3(@types/node@22.15.3)(sugarss@4.0.1(postcss@8.5.3))(tsx@4.19.3))':
     dependencies:
       '@babel/core': 7.26.10
       '@babel/plugin-transform-react-jsx-self': 7.25.9(@babel/core@7.26.10)
       '@babel/plugin-transform-react-jsx-source': 7.25.9(@babel/core@7.26.10)
       '@types/babel__core': 7.20.5
       react-refresh: 0.17.0
-      vite: 6.3.3(@types/node@22.15.2)(sugarss@4.0.1(postcss@8.5.3))(tsx@4.19.3)
+      vite: 6.3.3(@types/node@22.15.3)(sugarss@4.0.1(postcss@8.5.3))(tsx@4.19.3)
     transitivePeerDependencies:
       - supports-color
 
@@ -4084,7 +4084,7 @@ snapshots:
 
   util-deprecate@1.0.2: {}
 
-  vite@6.3.3(@types/node@22.15.2)(sugarss@4.0.1(postcss@8.5.3))(tsx@4.19.3):
+  vite@6.3.3(@types/node@22.15.3)(sugarss@4.0.1(postcss@8.5.3))(tsx@4.19.3):
     dependencies:
       esbuild: 0.25.2
       fdir: 6.4.4(picomatch@4.0.2)
@@ -4093,7 +4093,7 @@ snapshots:
       rollup: 4.38.0
       tinyglobby: 0.2.13
     optionalDependencies:
-      '@types/node': 22.15.2
+      '@types/node': 22.15.3
       fsevents: 2.3.3
       sugarss: 4.0.1(postcss@8.5.3)
       tsx: 4.19.3
