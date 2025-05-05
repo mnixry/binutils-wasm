@@ -13,8 +13,8 @@
   "dependencies": {
     "@binutils-wasm/binutils": "workspace:^",
     "@binutils-wasm/gas": "workspace:^",
-    "@mantine/core": "^7.17.3",
-    "@mantine/hooks": "^7.17.3",
+    "@mantine/core": "^8.0.0",
+    "@mantine/hooks": "^8.0.0",
     "@replit/codemirror-vscode-keymap": "^6.0.2",
     "@tabler/icons-react": "^3.31.0",
     "@uiw/codemirror-extensions-langs": "^4.23.10",
