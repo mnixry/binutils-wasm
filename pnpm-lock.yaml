@@ -10,7 +10,7 @@ importers:
     devDependencies:
       '@tsconfig/node-lts':
         specifier: ^22.0.1
-        version: 22.0.1
+        version: 22.0.2
       '@tsconfig/strictest':
         specifier: ^2.0.5
         version: 2.0.5
@@ -1020,8 +1020,8 @@ packages:
       svelte:
         optional: true
 
-  '@tsconfig/node-lts@22.0.1':
-    resolution: {integrity: sha512-BwlbLiYurZKrj+Pa6etSE1jXmr3VEDdgJto1jEYKcpBVwZZSWVkCPyFEFYbHdIOaFMlSTtV206DYPlT109aqug==}
+  '@tsconfig/node-lts@22.0.2':
+    resolution: {integrity: sha512-Kgq5yXTvnUnvlhob0xJpOH4na9PWtuFhHSf94MpDwnENWgiFeJKDNANQV2MT1WpXZYkK2WSWfVYKhVkR7bc8TA==}
 
   '@tsconfig/strictest@2.0.5':
     resolution: {integrity: sha512-ec4tjL2Rr0pkZ5hww65c+EEPYwxOi4Ryv+0MtjeaSQRJyq322Q27eOQiFbuNgw2hpL4hB1/W/HBGk3VKS43osg==}
@@ -3165,7 +3165,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@tsconfig/node-lts@22.0.1': {}
+  '@tsconfig/node-lts@22.0.2': {}
 
   '@tsconfig/strictest@2.0.5': {}
 
