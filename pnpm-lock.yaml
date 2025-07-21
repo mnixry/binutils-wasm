@@ -40,7 +40,7 @@ importers:
         version: 6.0.2(@codemirror/autocomplete@6.18.6)(@codemirror/commands@6.8.1)(@codemirror/language@6.11.2)(@codemirror/lint@6.8.5)(@codemirror/search@6.5.11)(@codemirror/state@6.5.2)(@codemirror/view@6.38.0)
       '@tabler/icons-react':
         specifier: ^3.34.0
-        version: 3.34.0(react@19.1.0)
+        version: 3.34.1(react@19.1.0)
       '@uiw/codemirror-extensions-langs':
         specifier: ^4.23.13
         version: 4.24.1(@codemirror/autocomplete@6.18.6)(@codemirror/language-data@6.5.1)(@codemirror/language@6.11.2)(@codemirror/legacy-modes@6.5.1)(@codemirror/state@6.5.2)(@codemirror/view@6.38.0)(@lezer/common@1.2.3)(@lezer/highlight@1.2.1)(@lezer/javascript@1.5.1)(@lezer/lr@1.4.2)
@@ -898,13 +898,13 @@ packages:
     cpu: [x64]
     os: [win32]
 
-  '@tabler/icons-react@3.34.0':
-    resolution: {integrity: sha512-OpEIR2iZsIXECtAIMbn1zfKfQ3zKJjXyIZlkgOGUL9UkMCFycEiF2Y8AVfEQsyre/3FnBdlWJvGr0NU47n2TbQ==}
+  '@tabler/icons-react@3.34.1':
+    resolution: {integrity: sha512-Ld6g0NqOO05kyyHsfU8h787PdHBm7cFmOycQSIrGp45XcXYDuOK2Bs0VC4T2FWSKZ6bx5g04imfzazf/nqtk1A==}
     peerDependencies:
       react: '>= 16'
 
-  '@tabler/icons@3.34.0':
-    resolution: {integrity: sha512-jtVqv0JC1WU2TTEBN32D9+R6mc1iEBuPwLnBsWaR02SIEciu9aq5806AWkCHuObhQ4ERhhXErLEK7Fs+tEZxiA==}
+  '@tabler/icons@3.34.1':
+    resolution: {integrity: sha512-9gTnUvd7Fd/DmQgr3MKY+oJLa1RfNsQo8c/ir3TJAWghOuZXodbtbVp0QBY2DxWuuvrSZFys0HEbv1CoiI5y6A==}
 
   '@trivago/prettier-plugin-sort-imports@5.2.2':
     resolution: {integrity: sha512-fYDQA9e6yTNmA13TLVSA+WMQRc5Bn/c0EUBditUHNfMMxN7M82c38b1kEggVE3pLpZ0FwkwJkUEKMiOi52JXFA==}
@@ -3007,12 +3007,12 @@ snapshots:
   '@rollup/rollup-win32-x64-msvc@4.44.2':
     optional: true
 
-  '@tabler/icons-react@3.34.0(react@19.1.0)':
+  '@tabler/icons-react@3.34.1(react@19.1.0)':
     dependencies:
-      '@tabler/icons': 3.34.0
+      '@tabler/icons': 3.34.1
       react: 19.1.0
 
-  '@tabler/icons@3.34.0': {}
+  '@tabler/icons@3.34.1': {}
 
   '@trivago/prettier-plugin-sort-imports@5.2.2(prettier@3.6.2)':
     dependencies:
