@@ -80,7 +80,7 @@ importers:
         version: 8.39.1(eslint@9.33.0)(typescript@5.8.3)
       '@vitejs/plugin-react':
         specifier: ^4.7.0
-        version: 4.7.0(rolldown-vite@7.0.12(@types/node@24.2.1)(esbuild@0.25.8)(sugarss@5.0.0(postcss@8.5.6))(tsx@4.20.3))
+        version: 4.7.0(rolldown-vite@7.0.12(@types/node@24.2.1)(esbuild@0.25.8)(sugarss@5.0.0(postcss@8.5.6))(tsx@4.20.4))
       babel-plugin-react-compiler:
         specifier: 19.1.0-rc.2
         version: 19.1.0-rc.2
@@ -110,22 +110,22 @@ importers:
         version: 5.8.3
       vite:
         specifier: npm:rolldown-vite@^7.0.12
-        version: rolldown-vite@7.0.12(@types/node@24.2.1)(esbuild@0.25.8)(sugarss@5.0.0(postcss@8.5.6))(tsx@4.20.3)
+        version: rolldown-vite@7.0.12(@types/node@24.2.1)(esbuild@0.25.8)(sugarss@5.0.0(postcss@8.5.6))(tsx@4.20.4)
 
   packages/binutils:
     devDependencies:
       tsup:
         specifier: ^8.5.0
-        version: 8.5.0(postcss@8.5.6)(tsx@4.20.3)(typescript@5.8.3)
+        version: 8.5.0(postcss@8.5.6)(tsx@4.20.4)(typescript@5.8.3)
 
   packages/gas:
     devDependencies:
       tsup:
         specifier: ^8.5.0
-        version: 8.5.0(postcss@8.5.6)(tsx@4.20.3)(typescript@5.8.3)
+        version: 8.5.0(postcss@8.5.6)(tsx@4.20.4)(typescript@5.8.3)
       tsx:
         specifier: ^4.20.3
-        version: 4.20.3
+        version: 4.20.4
 
 packages:
 
@@ -2019,8 +2019,8 @@ packages:
       typescript:
         optional: true
 
-  tsx@4.20.3:
-    resolution: {integrity: sha512-qjbnuR9Tr+FJOMBqJCW5ehvIo/buZq7vH7qD7JziU98h6l3qGy0a/yPFjwO+y0/T7GFpNgNAvEcPPVfyT8rrPQ==}
+  tsx@4.20.4:
+    resolution: {integrity: sha512-yyxBKfORQ7LuRt/BQKBXrpcq59ZvSW0XxwfjAt3w2/8PmdxaFzijtMhTawprSHhpzeM5BgU2hXHG3lklIERZXg==}
     engines: {node: '>=18.0.0'}
     hasBin: true
 
@@ -3270,7 +3270,7 @@ snapshots:
     optionalDependencies:
       react: 19.1.1
 
-  '@vitejs/plugin-react@4.7.0(rolldown-vite@7.0.12(@types/node@24.2.1)(esbuild@0.25.8)(sugarss@5.0.0(postcss@8.5.6))(tsx@4.20.3))':
+  '@vitejs/plugin-react@4.7.0(rolldown-vite@7.0.12(@types/node@24.2.1)(esbuild@0.25.8)(sugarss@5.0.0(postcss@8.5.6))(tsx@4.20.4))':
     dependencies:
       '@babel/core': 7.28.0
       '@babel/plugin-transform-react-jsx-self': 7.27.1(@babel/core@7.28.0)
@@ -3278,7 +3278,7 @@ snapshots:
       '@rolldown/pluginutils': 1.0.0-beta.27
       '@types/babel__core': 7.20.5
       react-refresh: 0.17.0
-      vite: rolldown-vite@7.0.12(@types/node@24.2.1)(esbuild@0.25.8)(sugarss@5.0.0(postcss@8.5.6))(tsx@4.20.3)
+      vite: rolldown-vite@7.0.12(@types/node@24.2.1)(esbuild@0.25.8)(sugarss@5.0.0(postcss@8.5.6))(tsx@4.20.4)
     transitivePeerDependencies:
       - supports-color
 
@@ -3840,12 +3840,12 @@ snapshots:
       camelcase-css: 2.0.1
       postcss: 8.5.6
 
-  postcss-load-config@6.0.1(postcss@8.5.6)(tsx@4.20.3):
+  postcss-load-config@6.0.1(postcss@8.5.6)(tsx@4.20.4):
     dependencies:
       lilconfig: 3.1.3
     optionalDependencies:
       postcss: 8.5.6
-      tsx: 4.20.3
+      tsx: 4.20.4
 
   postcss-mixins@12.1.2(postcss@8.5.6):
     dependencies:
@@ -3949,7 +3949,7 @@ snapshots:
 
   reusify@1.1.0: {}
 
-  rolldown-vite@7.0.12(@types/node@24.2.1)(esbuild@0.25.8)(sugarss@5.0.0(postcss@8.5.6))(tsx@4.20.3):
+  rolldown-vite@7.0.12(@types/node@24.2.1)(esbuild@0.25.8)(sugarss@5.0.0(postcss@8.5.6))(tsx@4.20.4):
     dependencies:
       fdir: 6.4.6(picomatch@4.0.3)
       lightningcss: 1.30.1
@@ -3962,7 +3962,7 @@ snapshots:
       esbuild: 0.25.8
       fsevents: 2.3.3
       sugarss: 5.0.0(postcss@8.5.6)
-      tsx: 4.20.3
+      tsx: 4.20.4
 
   rolldown@1.0.0-beta.30:
     dependencies:
@@ -4115,7 +4115,7 @@ snapshots:
 
   tslib@2.8.1: {}
 
-  tsup@8.5.0(postcss@8.5.6)(tsx@4.20.3)(typescript@5.8.3):
+  tsup@8.5.0(postcss@8.5.6)(tsx@4.20.4)(typescript@5.8.3):
     dependencies:
       bundle-require: 5.1.0(esbuild@0.25.8)
       cac: 6.7.14
@@ -4126,7 +4126,7 @@ snapshots:
       fix-dts-default-cjs-exports: 1.0.1
       joycon: 3.1.1
       picocolors: 1.1.1
-      postcss-load-config: 6.0.1(postcss@8.5.6)(tsx@4.20.3)
+      postcss-load-config: 6.0.1(postcss@8.5.6)(tsx@4.20.4)
       resolve-from: 5.0.0
       rollup: 4.46.2
       source-map: 0.8.0-beta.0
@@ -4143,7 +4143,7 @@ snapshots:
       - tsx
       - yaml
 
-  tsx@4.20.3:
+  tsx@4.20.4:
     dependencies:
       esbuild: 0.25.8
       get-tsconfig: 4.10.1
