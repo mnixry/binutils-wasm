@@ -16,7 +16,7 @@ importers:
         version: 2.0.5
       '@types/node':
         specifier: ^24.1.0
-        version: 24.5.1
+        version: 24.5.2
       typescript:
         specifier: ^5.8.3
         version: 5.8.3
@@ -80,7 +80,7 @@ importers:
         version: 8.44.0(eslint@9.35.0)(typescript@5.8.3)
       '@vitejs/plugin-react':
         specifier: ^5.0.0
-        version: 5.0.3(rolldown-vite@7.0.12(@types/node@24.5.1)(esbuild@0.25.9)(sugarss@5.0.0(postcss@8.5.6))(tsx@4.20.5))
+        version: 5.0.3(rolldown-vite@7.0.12(@types/node@24.5.2)(esbuild@0.25.9)(sugarss@5.0.0(postcss@8.5.6))(tsx@4.20.5))
       babel-plugin-react-compiler:
         specifier: 19.1.0-rc.3
         version: 19.1.0-rc.3
@@ -110,7 +110,7 @@ importers:
         version: 5.8.3
       vite:
         specifier: npm:rolldown-vite@^7.0.12
-        version: rolldown-vite@7.0.12(@types/node@24.5.1)(esbuild@0.25.9)(sugarss@5.0.0(postcss@8.5.6))(tsx@4.20.5)
+        version: rolldown-vite@7.0.12(@types/node@24.5.2)(esbuild@0.25.9)(sugarss@5.0.0(postcss@8.5.6))(tsx@4.20.5)
 
   packages/binutils:
     devDependencies:
@@ -1115,8 +1115,8 @@ packages:
   '@types/json-schema@7.0.15':
     resolution: {integrity: sha512-5+fP8P8MFNC+AyZCDxrB2pkZFPGzqQWUzpSeuuVLvm8VMcorNYavBqoFcxK8bQz4Qsbn4oUEEem4wDLfcysGHA==}
 
-  '@types/node@24.5.1':
-    resolution: {integrity: sha512-/SQdmUP2xa+1rdx7VwB9yPq8PaKej8TD5cQ+XfKDPWWC+VDJU4rvVVagXqKUzhKjtFoNA8rXDJAkCxQPAe00+Q==}
+  '@types/node@24.5.2':
+    resolution: {integrity: sha512-FYxk1I7wPv3K2XBaoyH2cTnocQEu8AOZ60hPbsyukMPLv5/5qr7V1i8PLHdl6Zf87I+xZXFvPCXYjiTFq+YSDQ==}
 
   '@types/react-dom@19.1.9':
     resolution: {integrity: sha512-qXRuZaOsAdXKFyOhRBg6Lqqc0yay13vN7KrIg4L7N4aaHN68ma9OK3NE1BoDFgFOTfM7zg+3/8+2n8rLUH3OKQ==}
@@ -3337,7 +3337,7 @@ snapshots:
 
   '@types/json-schema@7.0.15': {}
 
-  '@types/node@24.5.1':
+  '@types/node@24.5.2':
     dependencies:
       undici-types: 7.12.0
 
@@ -3507,7 +3507,7 @@ snapshots:
     optionalDependencies:
       react: 19.1.1
 
-  '@vitejs/plugin-react@5.0.3(rolldown-vite@7.0.12(@types/node@24.5.1)(esbuild@0.25.9)(sugarss@5.0.0(postcss@8.5.6))(tsx@4.20.5))':
+  '@vitejs/plugin-react@5.0.3(rolldown-vite@7.0.12(@types/node@24.5.2)(esbuild@0.25.9)(sugarss@5.0.0(postcss@8.5.6))(tsx@4.20.5))':
     dependencies:
       '@babel/core': 7.28.4
       '@babel/plugin-transform-react-jsx-self': 7.27.1(@babel/core@7.28.4)
@@ -3515,7 +3515,7 @@ snapshots:
       '@rolldown/pluginutils': 1.0.0-beta.35
       '@types/babel__core': 7.20.5
       react-refresh: 0.17.0
-      vite: rolldown-vite@7.0.12(@types/node@24.5.1)(esbuild@0.25.9)(sugarss@5.0.0(postcss@8.5.6))(tsx@4.20.5)
+      vite: rolldown-vite@7.0.12(@types/node@24.5.2)(esbuild@0.25.9)(sugarss@5.0.0(postcss@8.5.6))(tsx@4.20.5)
     transitivePeerDependencies:
       - supports-color
 
@@ -4222,7 +4222,7 @@ snapshots:
 
   reusify@1.1.0: {}
 
-  rolldown-vite@7.0.12(@types/node@24.5.1)(esbuild@0.25.9)(sugarss@5.0.0(postcss@8.5.6))(tsx@4.20.5):
+  rolldown-vite@7.0.12(@types/node@24.5.2)(esbuild@0.25.9)(sugarss@5.0.0(postcss@8.5.6))(tsx@4.20.5):
     dependencies:
       fdir: 6.4.6(picomatch@4.0.3)
       lightningcss: 1.30.1
@@ -4231,7 +4231,7 @@ snapshots:
       rolldown: 1.0.0-beta.30
       tinyglobby: 0.2.14
     optionalDependencies:
-      '@types/node': 24.5.1
+      '@types/node': 24.5.2
       esbuild: 0.25.9
       fsevents: 2.3.3
       sugarss: 5.0.0(postcss@8.5.6)
