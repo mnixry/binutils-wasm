@@ -16,7 +16,7 @@ importers:
         version: 2.0.6
       '@types/node':
         specifier: ^24.1.0
-        version: 24.6.2
+        version: 24.7.0
       typescript:
         specifier: ^5.8.3
         version: 5.8.3
@@ -80,7 +80,7 @@ importers:
         version: 8.45.0(eslint@9.37.0)(typescript@5.8.3)
       '@vitejs/plugin-react':
         specifier: ^5.0.0
-        version: 5.0.4(rolldown-vite@7.0.12(@types/node@24.6.2)(esbuild@0.25.10)(sugarss@5.0.0(postcss@8.5.6))(tsx@4.20.6))
+        version: 5.0.4(rolldown-vite@7.0.12(@types/node@24.7.0)(esbuild@0.25.10)(sugarss@5.0.0(postcss@8.5.6))(tsx@4.20.6))
       babel-plugin-react-compiler:
         specifier: 19.1.0-rc.3
         version: 19.1.0-rc.3
@@ -110,7 +110,7 @@ importers:
         version: 5.8.3
       vite:
         specifier: npm:rolldown-vite@^7.0.12
-        version: rolldown-vite@7.0.12(@types/node@24.6.2)(esbuild@0.25.10)(sugarss@5.0.0(postcss@8.5.6))(tsx@4.20.6)
+        version: rolldown-vite@7.0.12(@types/node@24.7.0)(esbuild@0.25.10)(sugarss@5.0.0(postcss@8.5.6))(tsx@4.20.6)
 
   packages/binutils:
     devDependencies:
@@ -1109,8 +1109,8 @@ packages:
   '@types/json-schema@7.0.15':
     resolution: {integrity: sha512-5+fP8P8MFNC+AyZCDxrB2pkZFPGzqQWUzpSeuuVLvm8VMcorNYavBqoFcxK8bQz4Qsbn4oUEEem4wDLfcysGHA==}
 
-  '@types/node@24.6.2':
-    resolution: {integrity: sha512-d2L25Y4j+W3ZlNAeMKcy7yDsK425ibcAOO2t7aPTz6gNMH0z2GThtwENCDc0d/Pw9wgyRqE5Px1wkV7naz8ang==}
+  '@types/node@24.7.0':
+    resolution: {integrity: sha512-IbKooQVqUBrlzWTi79E8Fw78l8k1RNtlDDNWsFZs7XonuQSJ8oNYfEeclhprUldXISRMLzBpILuKgPlIxm+/Yw==}
 
   '@types/react-dom@19.2.0':
     resolution: {integrity: sha512-brtBs0MnE9SMx7px208g39lRmC5uHZs96caOJfTjFcYSLHNamvaSMfJNagChVNkup2SdtOxKX1FDBkRSJe1ZAg==}
@@ -2209,8 +2209,8 @@ packages:
   ufo@1.6.1:
     resolution: {integrity: sha512-9a4/uxlTWJ4+a5i0ooc1rU7C7YOw3wT+UGqdeNNHWnOF9qcMBgLRS+4IYUqbczewFx4mLEig6gawh7X6mFlEkA==}
 
-  undici-types@7.13.0:
-    resolution: {integrity: sha512-Ov2Rr9Sx+fRgagJ5AX0qvItZG/JKKoBRAVITs1zk7IqZGTJUwgUr7qoYBpWwakpWilTZFM98rG/AFRocu10iIQ==}
+  undici-types@7.14.0:
+    resolution: {integrity: sha512-QQiYxHuyZ9gQUIrmPo3IA+hUl4KYk8uSA7cHrcKd/l3p1OTpZcM0Tbp9x7FAtXdAYhlasd60ncPpgu6ihG6TOA==}
 
   update-browserslist-db@1.1.3:
     resolution: {integrity: sha512-UxhIZQ+QInVdunkDAaiazvvT/+fXL5Osr0JZlJulepYu6Jd7qJtDZjlur0emRlT71EN3ScPoE7gvsuIKKNavKw==}
@@ -3328,9 +3328,9 @@ snapshots:
 
   '@types/json-schema@7.0.15': {}
 
-  '@types/node@24.6.2':
+  '@types/node@24.7.0':
     dependencies:
-      undici-types: 7.13.0
+      undici-types: 7.14.0
 
   '@types/react-dom@19.2.0(@types/react@19.2.0)':
     dependencies:
@@ -3498,7 +3498,7 @@ snapshots:
     optionalDependencies:
       react: 19.2.0
 
-  '@vitejs/plugin-react@5.0.4(rolldown-vite@7.0.12(@types/node@24.6.2)(esbuild@0.25.10)(sugarss@5.0.0(postcss@8.5.6))(tsx@4.20.6))':
+  '@vitejs/plugin-react@5.0.4(rolldown-vite@7.0.12(@types/node@24.7.0)(esbuild@0.25.10)(sugarss@5.0.0(postcss@8.5.6))(tsx@4.20.6))':
     dependencies:
       '@babel/core': 7.28.4
       '@babel/plugin-transform-react-jsx-self': 7.27.1(@babel/core@7.28.4)
@@ -3506,7 +3506,7 @@ snapshots:
       '@rolldown/pluginutils': 1.0.0-beta.38
       '@types/babel__core': 7.20.5
       react-refresh: 0.17.0
-      vite: rolldown-vite@7.0.12(@types/node@24.6.2)(esbuild@0.25.10)(sugarss@5.0.0(postcss@8.5.6))(tsx@4.20.6)
+      vite: rolldown-vite@7.0.12(@types/node@24.7.0)(esbuild@0.25.10)(sugarss@5.0.0(postcss@8.5.6))(tsx@4.20.6)
     transitivePeerDependencies:
       - supports-color
 
@@ -4213,7 +4213,7 @@ snapshots:
 
   reusify@1.1.0: {}
 
-  rolldown-vite@7.0.12(@types/node@24.6.2)(esbuild@0.25.10)(sugarss@5.0.0(postcss@8.5.6))(tsx@4.20.6):
+  rolldown-vite@7.0.12(@types/node@24.7.0)(esbuild@0.25.10)(sugarss@5.0.0(postcss@8.5.6))(tsx@4.20.6):
     dependencies:
       fdir: 6.4.6(picomatch@4.0.3)
       lightningcss: 1.30.1
@@ -4222,7 +4222,7 @@ snapshots:
       rolldown: 1.0.0-beta.30
       tinyglobby: 0.2.14
     optionalDependencies:
-      '@types/node': 24.6.2
+      '@types/node': 24.7.0
       esbuild: 0.25.10
       fsevents: 2.3.3
       sugarss: 5.0.0(postcss@8.5.6)
@@ -4424,7 +4424,7 @@ snapshots:
 
   ufo@1.6.1: {}
 
-  undici-types@7.13.0: {}
+  undici-types@7.14.0: {}
 
   update-browserslist-db@1.1.3(browserslist@4.26.2):
     dependencies:
