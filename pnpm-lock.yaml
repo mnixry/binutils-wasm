@@ -13,7 +13,7 @@ importers:
         version: 22.0.2
       '@tsconfig/strictest':
         specifier: ^2.0.5
-        version: 2.0.6
+        version: 2.0.7
       '@types/node':
         specifier: ^24.1.0
         version: 24.9.2
@@ -1106,8 +1106,8 @@ packages:
   '@tsconfig/node-lts@22.0.2':
     resolution: {integrity: sha512-Kgq5yXTvnUnvlhob0xJpOH4na9PWtuFhHSf94MpDwnENWgiFeJKDNANQV2MT1WpXZYkK2WSWfVYKhVkR7bc8TA==}
 
-  '@tsconfig/strictest@2.0.6':
-    resolution: {integrity: sha512-tPOhmDhIUcDjvpDDYyiUdssP84Eqm7n5KxJe5J3/g+s6xoDIPAf+SIn06dhw7VkhxIvLOnhDDrX7tsqMHNEhDg==}
+  '@tsconfig/strictest@2.0.7':
+    resolution: {integrity: sha512-lG1bXQloBVvQXasPBZSBaWbs7GNW4txZMYs7XMUVzM0s4seCbJACYBPFIRpGNVD3gC8gndK00AZON1uBrJt4Fw==}
 
   '@tybys/wasm-util@0.10.0':
     resolution: {integrity: sha512-VyyPYFlOMNylG45GoAe0xDoLwWuowvf92F9kySqzYh8vmYm7D2u4iUJKa1tOUpS70Ku13ASrOkS4ScXFsTaCNQ==}
@@ -3363,7 +3363,7 @@ snapshots:
 
   '@tsconfig/node-lts@22.0.2': {}
 
-  '@tsconfig/strictest@2.0.6': {}
+  '@tsconfig/strictest@2.0.7': {}
 
   '@tybys/wasm-util@0.10.0':
     dependencies:
