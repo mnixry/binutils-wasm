@@ -68,7 +68,7 @@ jobs:
           done
           echo 'EOF' >> $GITHUB_OUTPUT
 
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v5
         with:
           name: dists
           path: ${{ steps.find-dists.outputs.dirs }}
@@ -85,7 +85,7 @@ jobs:
         with:
           ref: ${{ env.CHECKOUT_REF }}
 
-      - uses: actions/download-artifact@v5
+      - uses: actions/download-artifact@v6
         with:
           name: dists
 
