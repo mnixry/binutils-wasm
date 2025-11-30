@@ -80,7 +80,7 @@ importers:
         version: 8.48.0(eslint@9.39.1)(typescript@5.8.3)
       '@vitejs/plugin-react':
         specifier: ^5.0.0
-        version: 5.1.1(rolldown-vite@7.0.12(@types/node@24.10.1)(esbuild@0.25.10)(sugarss@5.0.0(postcss@8.5.6))(tsx@4.20.6))
+        version: 5.1.1(rolldown-vite@7.0.12(@types/node@24.10.1)(esbuild@0.25.10)(sugarss@5.0.0(postcss@8.5.6))(tsx@4.21.0))
       babel-plugin-react-compiler:
         specifier: 19.1.0-rc.3
         version: 19.1.0-rc.3
@@ -110,22 +110,22 @@ importers:
         version: 5.8.3
       vite:
         specifier: npm:rolldown-vite@^7.0.12
-        version: rolldown-vite@7.0.12(@types/node@24.10.1)(esbuild@0.25.10)(sugarss@5.0.0(postcss@8.5.6))(tsx@4.20.6)
+        version: rolldown-vite@7.0.12(@types/node@24.10.1)(esbuild@0.25.10)(sugarss@5.0.0(postcss@8.5.6))(tsx@4.21.0)
 
   packages/binutils:
     devDependencies:
       tsup:
         specifier: ^8.5.0
-        version: 8.5.1(postcss@8.5.6)(tsx@4.20.6)(typescript@5.8.3)
+        version: 8.5.1(postcss@8.5.6)(tsx@4.21.0)(typescript@5.8.3)
 
   packages/gas:
     devDependencies:
       tsup:
         specifier: ^8.5.0
-        version: 8.5.1(postcss@8.5.6)(tsx@4.20.6)(typescript@5.8.3)
+        version: 8.5.1(postcss@8.5.6)(tsx@4.21.0)(typescript@5.8.3)
       tsx:
         specifier: ^4.20.3
-        version: 4.20.6
+        version: 4.21.0
 
 packages:
 
@@ -1572,8 +1572,8 @@ packages:
     resolution: {integrity: sha512-FJhYRoDaiatfEkUK8HKlicmu/3SGFD51q3itKDGoSTysQJBnfOcxU5GxnhE1E6soB76MbT0MBtnKJuXyAx+96Q==}
     engines: {node: '>=6'}
 
-  get-tsconfig@4.10.1:
-    resolution: {integrity: sha512-auHyJ4AgMz7vgS8Hp3N6HXSmlMdUyhSUrfBF16w153rxtLIEOE+HGqaBppczZvnHLqQJfiHotCYpNhl0lUROFQ==}
+  get-tsconfig@4.13.0:
+    resolution: {integrity: sha512-1VKTZJCwBrvbd+Wn3AOgQP/2Av+TfTCOlE4AcRJE72W1ksZXbAx8PPBR9RzgTeSPzlPMHrbANMH3LbltH73wxQ==}
 
   glob-parent@6.0.2:
     resolution: {integrity: sha512-XxwI8EOhVQgWp6iDL+3b0r86f4d6AX6zSU55HfB4ydCEuXLXc5FcYeOu+nnGftS4TEju/11rt4KJPTMgbfmv4A==}
@@ -2167,8 +2167,8 @@ packages:
       typescript:
         optional: true
 
-  tsx@4.20.6:
-    resolution: {integrity: sha512-ytQKuwgmrrkDTFP4LjR0ToE2nqgy886GpvRSpU0JAnrdBYppuY5rLkRUYPU1yCryb24SsKBTL/hlDQAEFVwtZg==}
+  tsx@4.21.0:
+    resolution: {integrity: sha512-5C1sg4USs1lfG0GFb2RLXsdpXqBSEhAaA/0kPL01wxzpMqLILNxIxIOKiILz+cdg/pLnOUxFYOR5yhHU666wbw==}
     engines: {node: '>=18.0.0'}
     hasBin: true
 
@@ -3512,7 +3512,7 @@ snapshots:
     optionalDependencies:
       react: 19.2.0
 
-  '@vitejs/plugin-react@5.1.1(rolldown-vite@7.0.12(@types/node@24.10.1)(esbuild@0.25.10)(sugarss@5.0.0(postcss@8.5.6))(tsx@4.20.6))':
+  '@vitejs/plugin-react@5.1.1(rolldown-vite@7.0.12(@types/node@24.10.1)(esbuild@0.25.10)(sugarss@5.0.0(postcss@8.5.6))(tsx@4.21.0))':
     dependencies:
       '@babel/core': 7.28.5
       '@babel/plugin-transform-react-jsx-self': 7.27.1(@babel/core@7.28.5)
@@ -3520,7 +3520,7 @@ snapshots:
       '@rolldown/pluginutils': 1.0.0-beta.47
       '@types/babel__core': 7.20.5
       react-refresh: 0.18.0
-      vite: rolldown-vite@7.0.12(@types/node@24.10.1)(esbuild@0.25.10)(sugarss@5.0.0(postcss@8.5.6))(tsx@4.20.6)
+      vite: rolldown-vite@7.0.12(@types/node@24.10.1)(esbuild@0.25.10)(sugarss@5.0.0(postcss@8.5.6))(tsx@4.21.0)
     transitivePeerDependencies:
       - supports-color
 
@@ -3692,6 +3692,7 @@ snapshots:
       '@esbuild/win32-arm64': 0.25.10
       '@esbuild/win32-ia32': 0.25.10
       '@esbuild/win32-x64': 0.25.10
+    optional: true
 
   esbuild@0.27.0:
     optionalDependencies:
@@ -3855,7 +3856,7 @@ snapshots:
 
   get-nonce@1.0.1: {}
 
-  get-tsconfig@4.10.1:
+  get-tsconfig@4.13.0:
     dependencies:
       resolve-pkg-maps: 1.0.0
 
@@ -4093,12 +4094,12 @@ snapshots:
       camelcase-css: 2.0.1
       postcss: 8.5.6
 
-  postcss-load-config@6.0.1(postcss@8.5.6)(tsx@4.20.6):
+  postcss-load-config@6.0.1(postcss@8.5.6)(tsx@4.21.0):
     dependencies:
       lilconfig: 3.1.3
     optionalDependencies:
       postcss: 8.5.6
-      tsx: 4.20.6
+      tsx: 4.21.0
 
   postcss-mixins@12.1.2(postcss@8.5.6):
     dependencies:
@@ -4198,7 +4199,7 @@ snapshots:
 
   resolve-pkg-maps@1.0.0: {}
 
-  rolldown-vite@7.0.12(@types/node@24.10.1)(esbuild@0.25.10)(sugarss@5.0.0(postcss@8.5.6))(tsx@4.20.6):
+  rolldown-vite@7.0.12(@types/node@24.10.1)(esbuild@0.25.10)(sugarss@5.0.0(postcss@8.5.6))(tsx@4.21.0):
     dependencies:
       fdir: 6.4.6(picomatch@4.0.3)
       lightningcss: 1.30.1
@@ -4211,7 +4212,7 @@ snapshots:
       esbuild: 0.25.10
       fsevents: 2.3.3
       sugarss: 5.0.0(postcss@8.5.6)
-      tsx: 4.20.6
+      tsx: 4.21.0
 
   rolldown@1.0.0-beta.30:
     dependencies:
@@ -4357,7 +4358,7 @@ snapshots:
 
   tslib@2.8.1: {}
 
-  tsup@8.5.1(postcss@8.5.6)(tsx@4.20.6)(typescript@5.8.3):
+  tsup@8.5.1(postcss@8.5.6)(tsx@4.21.0)(typescript@5.8.3):
     dependencies:
       bundle-require: 5.1.0(esbuild@0.27.0)
       cac: 6.7.14
@@ -4368,7 +4369,7 @@ snapshots:
       fix-dts-default-cjs-exports: 1.0.1
       joycon: 3.1.1
       picocolors: 1.1.1
-      postcss-load-config: 6.0.1(postcss@8.5.6)(tsx@4.20.6)
+      postcss-load-config: 6.0.1(postcss@8.5.6)(tsx@4.21.0)
       resolve-from: 5.0.0
       rollup: 4.53.2
       source-map: 0.7.6
@@ -4385,10 +4386,10 @@ snapshots:
       - tsx
       - yaml
 
-  tsx@4.20.6:
+  tsx@4.21.0:
     dependencies:
-      esbuild: 0.25.10
-      get-tsconfig: 4.10.1
+      esbuild: 0.27.0
+      get-tsconfig: 4.13.0
     optionalDependencies:
       fsevents: 2.3.3
 
